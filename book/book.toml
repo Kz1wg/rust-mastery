@@ -1,0 +1,15 @@
+[book]
+title = "Rust Mastery"
+description = "Rust中級者が、Rustで設計できる上級者になるための実践型学習教材"
+language = "ja"
+src = "src"
+
+[rust]
+edition = "2021"
+
+[output.html]
+default-theme = "light"
+# 章番号は「00 Introduction」「01 Ownership」…「A. Compiler Error 読解集」のように
+# 本文タイトル側の文字列で管理している。mdBookの自動連番（パート跨ぎで連番になり、
+# タイトルの番号とずれる）は無効化する。
+no-section-label = true
