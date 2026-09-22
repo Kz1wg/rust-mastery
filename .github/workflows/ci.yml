@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  book:
+    name: mdBook build & test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # mdBook はcargo installだとビルドに数分かかるため、プリビルド版を使う。
+      # 0.4系・0.5系の両方で本文コードのテストが通ることを確認済み（ARCHITECTURE.md §3.4）。
+      - uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: "0.4.40"
+      - run: mdbook build book
+      - run: mdbook test book
+
+  error-codes:
+    name: compile_fail のエラーコード検証
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: python3 tools/check_error_codes.py
+
+  exercises-build:
+    name: 演習の骨組みがビルドできるか
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      # 骨組み（todo!()）はコンパイルは通り、実行時にpanicする。
+      # ここではコンパイルが通ること（構文・シグネチャの誤りがないこと）だけを確認する。
+      - run: cargo build --workspace
+      - run: cd exercises/ex012_non_exhaustive && cargo build --workspace
+
+  solutions:
+    name: 解答の検証（test + fmt + clippy）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - run: chmod +x tools/verify_solutions.sh
+      - run: ./tools/verify_solutions.sh --fmt --clippy
