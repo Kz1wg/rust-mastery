@@ -10,13 +10,16 @@ jobs:
     name: mdBook build & test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
-      # mdBook はcargo installだとビルドに数分かかるため、プリビルド版を使う。
-      # 0.4系・0.5系の両方で本文コードのテストが通ることを確認済み（ARCHITECTURE.md §3.4）。
-      - uses: peaceiris/actions-mdbook@v2
-        with:
-          mdbook-version: "0.4.40"
+      # mdBook はcargo installだとビルドに数分かかるため、プリビルドバイナリを直接取得する。
+      # peaceiris/actions-mdbook は2024年から更新が止まっており、Node.js 24に対応する
+      # 見込みが薄いため使わない。0.4系・0.5系の両方で本文コードのテストが
+      # 通ることを確認済み（ARCHITECTURE.md §3.4）。
+      - name: Install mdBook
+        run: |
+          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.40/mdbook-v0.4.40-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          echo "$PWD" >> "$GITHUB_PATH"
       - run: mdbook build book
       - run: mdbook test book
 
@@ -24,7 +27,7 @@ jobs:
     name: compile_fail のエラーコード検証
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
       - run: python3 tools/check_error_codes.py
 
@@ -32,7 +35,7 @@ jobs:
     name: 演習の骨組みがビルドできるか
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
       # 骨組み（todo!()）はコンパイルは通り、実行時にpanicする。
       # ここではコンパイルが通ること（構文・シグネチャの誤りがないこと）だけを確認する。
@@ -43,7 +46,7 @@ jobs:
     name: 解答の検証（test + fmt + clippy）
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy

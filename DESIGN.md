@@ -136,3 +136,5 @@ Concept → Why? → Bad Example → Problem → Think → Hint
 | 2026-09-22 | ex012 用に、ルートworkspaceから独立したnested workspace（lib/app）を作った | Lesson 03-4 の主題（別crateの利用者への影響）を機械的にテストするには、本当に別crateが必要だったため |
 | 2026-09-22 | GitHubへの公開に備え、LICENSE（MIT）、`.github/workflows/ci.yml`、`tools/verify_solutions.sh` を追加した | ユーザーからの明示的な依頼。ライセンスは相談せずMITを選んだ（学習教材として一般的な選択）。ユーザー自身の判断で変更可能 |
 | 2026-09-22 | `.github/workflows/ci.yml` はローカルで同等コマンドの成功のみ確認し、GitHub Actions上での実行では確認していない | このサンドボックスにGitHub Actionsを実行する手段がないため。最初のpush後、Actionsタブでの確認をユーザーに委ねる |
+| 2026-09-22 | GitHub Actionsで実行し、Node.js 20非推奨の警告（actions/checkout@v4, peaceiris/actions-mdbook@v2）を確認。actions/checkout@v5へ更新し、peaceiris/actions-mdbook（2024年から更新停止）はmdBookバイナリの直接curlダウンロードに置き換えた | ユーザーからの実行結果報告。peaceiris/actions-mdbookはNode24対応の見込みが薄いメンテナンス停止プロジェクトのため、サードパーティNode actionへの依存自体をなくす方針にした |
+| 2026-09-22 | `ubuntu-latest` が2026-10-19からUbuntu 26に移行するというnoticeが出ているが、対応は保留（現時点ではUbuntu 24のまま動作しており、移行後の互換性は未検証） | 情報提供のみのnoticeであり、今すぐ変更が必要な警告ではないため |

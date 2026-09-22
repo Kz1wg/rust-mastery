@@ -263,6 +263,12 @@ exercises/exNNN_ai_review/
 | error-codes | `python3 tools/check_error_codes.py` | `compile_fail` のエラーコード一致の検証 |
 | fmt | `cargo fmt --all --check` | rustfmt |
 | clippy | `cargo clippy -p check-exercises -- -D warnings` | 演習ツールのlint（骨組みは `todo!()` を含むため対象外） |
+
+> **実装状況（2026-09-22）**: `.github/workflows/ci.yml` に4ジョブ（book / error-codes /
+> exercises-build / solutions）を実装し、GitHub Actions上で実行して全て通ることを確認した。
+> `actions/checkout@v5` と `dtolnay/rust-toolchain@stable`（composite action、Node runtimeなし）
+> のみを使い、`peaceiris/actions-mdbook`（2024年から更新停止、Node 24未対応）は使わず、
+> mdBookのプリビルドバイナリを `curl` で直接取得している。
 | solutions | `cargo run --bin check-exercises -- --solutions` | 解答検証 |
 
 ## 7. 未決事項
