@@ -1,0 +1,5 @@
+id = "ex037_zero_cost"
+title = "zeroのコストと、zeroでないコストを確かめる"
+lesson = "09-4"
+difficulty = 1
+concepts = ["zero-cost abstraction", "repr(transparent)", "niche optimization"]

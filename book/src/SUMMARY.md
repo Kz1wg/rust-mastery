@@ -58,7 +58,11 @@
   - [08-2 構造体が参照を持つ設計](08-lifetimes/08-2-structs-with-references.md)
   - [08-3 elisionと `'static`](08-lifetimes/08-3-elision-and-static.md)
   - [08-4 HRTB入門](08-lifetimes/08-4-hrtb.md)
-- [09 Advanced Type System]()
+- [09 Advanced Type System](09-advanced-type-system/index.md)
+  - [09-1 `PhantomData`](09-advanced-type-system/09-1-phantom-data.md)
+  - [09-2 variance](09-advanced-type-system/09-2-variance.md)
+  - [09-3 型レベルでの制約表現](09-advanced-type-system/09-3-type-level-constraints.md)
+  - [09-4 zero-cost abstraction](09-advanced-type-system/09-4-zero-cost.md)
 - [10 Concurrency]()
 - [11 Async Rust]()
 

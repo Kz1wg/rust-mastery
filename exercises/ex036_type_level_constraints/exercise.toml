@@ -1,0 +1,5 @@
+id = "ex036_type_level_constraints"
+title = "const genericsで次元を、sealed traitで実装者を制約する"
+lesson = "09-3"
+difficulty = 3
+concepts = ["const generics", "sealed trait", "compile_fail"]

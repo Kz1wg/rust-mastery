@@ -1,0 +1,5 @@
+id = "ex034_phantom_data"
+title = "PhantomDataで型付きIDを作る"
+lesson = "09-1"
+difficulty = 2
+concepts = ["PhantomData", "derive pitfalls", "compile_fail"]

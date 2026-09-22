@@ -6,7 +6,7 @@ Rustの文法を教える教材ではありません。
 「この状態は型で表現した方がいいか？」「このtraitは本当に必要か？」「このAPIは利用者に何を保証するか？」——
 そう考えられるようになることが目的です。
 
-> 開発状況: 設計・mdBook・第1〜8章・全33演習（ex001〜ex033）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 09（Advanced Type System）以降はまだです。
+> 開発状況: 設計・mdBook・第1〜9章・全37演習（ex001〜ex037）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 10（Concurrency）以降はまだです。
 
 ## 対象者
 

@@ -1,0 +1,5 @@
+id = "ex035_variance"
+title = "共変と不変を、読むだけか書き込めるかで理解する"
+lesson = "09-2"
+difficulty = 2
+concepts = ["variance", "lifetimes", "compile_fail"]

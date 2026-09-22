@@ -65,7 +65,11 @@ rust-mastery/
 │   ├── ex030_lifetime_annotations/ # Chapter 08（4つ）
 │   ├── ex031_struct_with_reference/
 │   ├── ex032_static_bound/
-│   └── ex033_hrtb/
+│   ├── ex033_hrtb/
+│   ├── ex034_phantom_data/    # Chapter 09（4つ）
+│   ├── ex035_variance/
+│   ├── ex036_type_level_constraints/
+│   └── ex037_zero_cost/
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
 │   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
 ├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
@@ -203,7 +207,7 @@ prerequisites = ["ex000_..."] # 省略可
 `check-exercises` はこのファイルを読んで一覧・進捗を表示する。
 メタデータを演習crateの外（本文）に持たせないのは、本文の書き換えで進捗管理が壊れないようにするため。
 
-> **実装状況（2026-09-22）**: ex001〜ex033（Chapter 01〜08）を実装済み。全33演習。
+> **実装状況（2026-09-22）**: ex001〜ex037（Chapter 01〜09）を実装済み。全37演習。
 > `check-exercises`（進捗確認CLI、下記）と `tools/verify_solutions.sh`（下記）の両方が使える。
 >
 > **確認方法についての注意**: `cargo fmt` / `cargo clippy` は、**全演習に解答を重ねた状態**

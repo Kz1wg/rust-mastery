@@ -133,3 +133,19 @@ version = "0.1.0"
 [[package]]
 name = "ex033_hrtb"
 version = "0.1.0"
+
+[[package]]
+name = "ex034_phantom_data"
+version = "0.1.0"
+
+[[package]]
+name = "ex035_variance"
+version = "0.1.0"
+
+[[package]]
+name = "ex036_type_level_constraints"
+version = "0.1.0"
+
+[[package]]
+name = "ex037_zero_cost"
+version = "0.1.0"

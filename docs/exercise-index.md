@@ -1,6 +1,6 @@
 # 演習インデックス
 
-全33演習（ex001〜ex033）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
+全37演習（ex001〜ex037）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
 全て実装済み（骨組み・テスト・`exercise.toml`・`solutions/`）。
 
 判定は `cargo test -p <ID>`（ex012 のみ `cd exercises/ex012_non_exhaustive && cargo test`）。
@@ -41,6 +41,10 @@
 | ex031_struct_with_reference | 08-2 | `Parser<'a>::next_word`（戻り値を `'a` に結びつける） | 通常テスト（単語を持ったまま次を取り出せること） |
 | ex032_static_bound | 08-3 | `describe_later<T: 'static>` | 通常テスト＋ `compile_fail` doctest |
 | ex033_hrtb | 08-4 | `apply_to_local`（`for<'a>`）/ `count_matching`（省略形） | 通常テスト |
+| ex034_phantom_data | 09-1 | `Id<T>`（型付きID、手書きの `Clone`/`Copy`） | 通常テスト＋ `compile_fail` doctest |
+| ex035_variance | 09-2 | `pick_longer`（共変）/ `push_word`（不変）/ `collect_short_words` | 通常テスト＋ `compile_fail` doctest |
+| ex036_type_level_constraints | 09-3 | `Vector<const N>`、sealed trait `Unit` | 通常テスト＋ `compile_fail` doctest ×2（doctest は別crateとして実行されるので封印を確認できる） |
+| ex037_zero_cost | 09-4 | iterator版とloop版、`#[repr(transparent)]` の `UserId` | 通常テスト（`size_of` でレイアウトも確認） |
 
 ## 演習の設計方針
 
@@ -59,6 +63,8 @@
   具体的な式から行われるため、`error[E0277]: () is not an iterator` になる（ex020）。外側の式は骨組みに残し、
   `todo!()` はクロージャの中など内側の式に埋め込む。最終式が `.chain(...)` のようにクロージャを持たない場合は、
   題材に軽い条件（`.filter(...)` など）を足して埋め込む場所を作る（ex029）。
+- **骨組みを作ったら、テストファイルも含めて `cargo fmt --all` をかけてから検証する。** 解答側だけでなく
+  `tests/tests.rs` も未整形のまま残りやすい（ex033・ex034 の長い `vec![...]` の行）。CI の exercises-build が検出する。
 - **解答に `cargo fmt` をかけたら、その結果を `solutions/` へ書き戻す。** 忘れると
   `verify_solutions.sh --fmt` が失敗する（ex013）。`check-exercises --solutions` は fmt を見ないので検知できない。
 - **テストの期待値は自分で計算し直す。** 骨組みの `todo!()` 失敗確認では、テスト自体の誤りは検出できない。
