@@ -149,6 +149,31 @@ fn main() {
 `Debug` は本来「開発者向けの内部表現」を保証するtraitですが、
 機密情報についてはその `Debug` ですら中身を隠す判断が必要になる、という例です。
 
+ただし「表示しない」と「使えない」は別の話です。上の `Password` は中身をどこからも読めないので、
+実際には何の役にも立ちません（Rust 1.77 以降は `field 0 is never read` という警告も出ます）。
+**表示は隠しつつ、必要な操作（照合など）だけを公開する**のが、機密値を持つ型の設計です。
+
+```rust
+struct Password(String);
+
+impl Password {
+    fn verify(&self, candidate: &str) -> bool {
+        self.0 == candidate // 実際にはハッシュ同士を比較する
+    }
+}
+
+impl std::fmt::Debug for Password {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Password(***)")
+    }
+}
+
+fn main() {
+    let p = Password("hunter2".to_string());
+    println!("{p:?} {}", p.verify("hunter2"));
+}
+```
+
 </details>
 
 ## `AsRef` の約束: 安く、副作用がないこと

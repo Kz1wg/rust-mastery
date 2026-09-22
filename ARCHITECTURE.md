@@ -322,8 +322,13 @@ Node runtime なし）のみ。`peaceiris/actions-mdbook`（2024年から更新�
 mdBook のプリビルドバイナリを `curl` で直接取得している。
 
 > **実行確認の状況（2026-09-22）**: `checkout@v4` 版の初回実行では、Node.js 20 非推奨の警告と
-> ubuntu-latest 移行の notice のみが報告された（失敗の報告は無し）。`checkout@v5` への更新と
-> mdBook の取得方法変更の後の実行結果は、まだ確認していない。
+> ubuntu-latest 移行の notice のみが報告された（失敗の報告は無し）。
+> `checkout@v5` 更新後の実行では、solutions ジョブで ex016 が失敗した（33件中32件は成功）。
+> 原因は Rust 1.77 で追加された「読まれないタプル構造体フィールド」の `dead_code` 警告と判断し、修正済み。
+> 修正後の実行結果と、他の3ジョブの結果はまだ確認していない。
+>
+> **検証環境の差に注意**: 開発サンドボックスは Rust 1.75 のため、それ以降に追加された lint は
+> ローカルの `verify_solutions.sh` では検出できない。新しい lint に対する最終的な判定は CI（最新 stable）が担う。
 
 ## 7. 未決事項
 

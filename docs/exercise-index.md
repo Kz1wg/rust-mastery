@@ -68,5 +68,9 @@
 - **解答だけでなく、骨組みのシグネチャも clippy の目で見る。** 骨組みは `todo!()` のため clippy に掛けられないが、
   シグネチャは解答と共有される。教材として丁寧に書いた `fn first<'a, 'b>(..., _b: &'b str)` が
   `needless_lifetimes` に引っかかった（ex030）。
+- **private なフィールドは、どこかで必ず読まれるようにする。** `Password(String)` の中身を手書き `Debug` で
+  意図的に隠した結果、どこからも読まれず、Rust 1.77 以降の `dead_code` 警告（`field 0 is never read`）で
+  CI の `clippy -D warnings` が失敗した（ex016）。開発サンドボックス（Rust 1.75）では再現しなかった。
+  読まれないフィールドは、たいてい「その値を使うAPIが設計されていない」サインでもある。
 - **typestate の題材で `unwrap` が必要になったら、状態の持たせ方を疑う。** 状態を型にしたのに
   `Option` を `unwrap` していた（ex011）。値はその状態の型に持たせる。

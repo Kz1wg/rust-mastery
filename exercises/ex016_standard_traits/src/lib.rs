@@ -30,6 +30,12 @@ impl Password {
     pub fn new(value: impl Into<String>) -> Self {
         Password(value.into())
     }
+
+    /// 入力された文字列が一致するかを確かめる。中身は外に出さず、照合だけに使う。
+    /// （実際のシステムでは平文を保持せず、ハッシュ化して比較する。ここでは簡略化している。）
+    pub fn verify(&self, candidate: &str) -> bool {
+        self.0 == candidate
+    }
 }
 
 // Password には Display を実装しない

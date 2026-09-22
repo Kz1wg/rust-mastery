@@ -29,6 +29,13 @@ fn percentage_try_into_also_works() {
 }
 
 #[test]
+fn password_can_be_verified_without_exposing_it() {
+    let p = Password::new("hunter2");
+    assert!(p.verify("hunter2"));
+    assert!(!p.verify("wrong"));
+}
+
+#[test]
 fn password_debug_does_not_leak_the_value() {
     let p = Password::new("hunter2");
     let debug_output = format!("{p:?}");
