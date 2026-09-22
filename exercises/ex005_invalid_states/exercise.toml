@@ -1,0 +1,5 @@
+id = "ex005_invalid_states"
+title = "boolの組み合わせをenumで表す"
+lesson = "02-1"
+difficulty = 1
+concepts = ["enum", "invalid states", "exhaustiveness"]

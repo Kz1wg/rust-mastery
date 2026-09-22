@@ -1,0 +1,5 @@
+id = "ex009_enum_states"
+title = "複数のOptionをenumに置き換える"
+lesson = "03-1"
+difficulty = 2
+concepts = ["enum", "state as data"]

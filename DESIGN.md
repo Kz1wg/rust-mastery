@@ -128,3 +128,11 @@ Concept → Why? → Bad Example → Problem → Think → Hint
 | 2026-09-22 | 解答は `solutions/` に分離し、演習crateには置かない | 学習者が誤って答えを見ないため。検証は `check-exercises --solutions` で自動化する |
 | 2026-09-22 | 動作確認済みバージョンを README / ARCHITECTURE に記録（Rust 1.98.1・mdBook 0.5.4 は利用者環境、Rust 1.75.0・mdBook 0.4.40 は開発サンドボックス） | 「推奨バージョン」と「実際に確認したバージョン」を区別して記録するため |
 | 2026-09-22 | `book.toml` に `no-section-label = true` を追加 | mdBookのサイドバー自動連番（パートを跨いで連番）が、タイトル文字列の章番号（00〜18, A〜C）とずれるため無効化（利用者からの指摘で発見） |
+| 2026-09-22 | Phase 4 を ex001〜ex004（Chapter 01）から着手し、Chapter 02・03 前に一度確認をもらう進め方にした | 12個まとめて作ってからずれに気づくと手戻りが大きいため |
+| 2026-09-22 | ex003 の演習では「シグネチャを自分で決める」という本文の narrative に反し、骨組みでシグネチャを固定した | ARCHITECTURE.md の演習crate規約（公開APIのシグネチャは完成させ、本体のみ todo!()）に合わせるため。本文の思考課題としての「自分で決める」体験は Lesson 内の Think / Solution で担保する |
+| 2026-09-22 | Chapter 02 の演習（ex005〜ex008）を実装 | 予定どおり Chapter 01 の確認後に着手 |
+| 2026-09-22 | 骨組み（`todo!()`）状態で `cargo clippy --workspace` を走らせると `unused variable` で失敗することを確認し、ARCHITECTURE.md §6 の「clippyは演習骨組みを対象外にする」という既存方針の妥当性を裏付けた | 検証手順の誤り（全crateではなく一部だけ解答を重ねていた）で発覚。以後、fmt/clippy検証は必ず全crateに解答を重ねた状態で行う |
+| 2026-09-22 | Chapter 03 の演習（ex009〜ex012）を実装し、全12演習が揃った | 予定どおり |
+| 2026-09-22 | ex012 用に、ルートworkspaceから独立したnested workspace（lib/app）を作った | Lesson 03-4 の主題（別crateの利用者への影響）を機械的にテストするには、本当に別crateが必要だったため |
+| 2026-09-22 | GitHubへの公開に備え、LICENSE（MIT）、`.github/workflows/ci.yml`、`tools/verify_solutions.sh` を追加した | ユーザーからの明示的な依頼。ライセンスは相談せずMITを選んだ（学習教材として一般的な選択）。ユーザー自身の判断で変更可能 |
+| 2026-09-22 | `.github/workflows/ci.yml` はローカルで同等コマンドの成功のみ確認し、GitHub Actions上での実行では確認していない | このサンドボックスにGitHub Actionsを実行する手段がないため。最初のpush後、Actionsタブでの確認をユーザーに委ねる |

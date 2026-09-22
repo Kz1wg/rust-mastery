@@ -1,0 +1,5 @@
+[package]
+name = "ex009_enum_states"
+version = "0.1.0"
+edition = "2021"
+publish = false

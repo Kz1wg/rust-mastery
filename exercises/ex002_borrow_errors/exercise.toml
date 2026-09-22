@@ -1,0 +1,5 @@
+id = "ex002_borrow_errors"
+title = "借用エラーを設計で解消する"
+lesson = "01-2"
+difficulty = 2
+concepts = ["borrowing", "NLL", "split_at_mut"]

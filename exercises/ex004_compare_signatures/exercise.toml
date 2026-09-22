@@ -1,0 +1,5 @@
+id = "ex004_compare_signatures"
+title = "3つのシグネチャで同じ処理を書く"
+lesson = "01-4"
+difficulty = 3
+concepts = ["ownership", "borrowing", "IntoIterator", "AsRef<str>"]

@@ -1,0 +1,5 @@
+id = "ex001_move_semantics"
+title = "所有権を受け取る関数と借用する関数"
+lesson = "01-1"
+difficulty = 1
+concepts = ["ownership", "move", "borrowing"]

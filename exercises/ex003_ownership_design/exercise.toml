@@ -1,0 +1,5 @@
+id = "ex003_ownership_design"
+title = "所有権で設計する：引数の受け方を選ぶ"
+lesson = "01-3"
+difficulty = 2
+concepts = ["ownership design", "&str vs String", "Into<String>"]

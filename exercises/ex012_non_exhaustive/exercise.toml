@@ -1,0 +1,5 @@
+id = "ex012_non_exhaustive"
+title = "#[non_exhaustive] と将来のバリアントに備える"
+lesson = "03-4"
+difficulty = 2
+concepts = ["non_exhaustive", "semver", "wildcard match"]

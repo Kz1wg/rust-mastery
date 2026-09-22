@@ -33,13 +33,20 @@ rust-mastery/
 │       │   └── ...
 │       └── appendix/
 ├── exercises/                 # 学習者が解く演習（骨組み + テスト）
-│   └── ex001_newtype/
-│       ├── Cargo.toml
-│       ├── exercise.toml      # メタデータ（後述）
-│       ├── src/lib.rs         # todo!() を含む骨組み
-│       └── tests/tests.rs     # 判定テスト
+│   ├── ex001_move_semantics/  # Chapter 01（4つ）
+│   ├── ex002_borrow_errors/
+│   ├── ex003_ownership_design/
+│   ├── ex004_compare_signatures/
+│   ├── ex005_invalid_states/  # Chapter 02（4つ）
+│   ├── ex006_newtype/
+│   ├── ex007_parse_dont_validate/
+│   ├── ex008_visibility/
+│   ├── ex009_enum_states/     # Chapter 03（4つ）
+│   ├── ex010_state_machine/
+│   ├── ex011_typestate/
+│   └── ex012_non_exhaustive/  # lib/app の2crateからなる独立workspace（下記）
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
-│   └── ex001_newtype/src/lib.rs
+│   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
 ├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
 ├── tools/
 │   ├── check_error_codes.py   # compile_fail のエラーコード検証（Phase 3で追加済み）
@@ -174,6 +181,32 @@ prerequisites = ["ex000_..."] # 省略可
 
 `check-exercises` はこのファイルを読んで一覧・進捗を表示する。
 メタデータを演習crateの外（本文）に持たせないのは、本文の書き換えで進捗管理が壊れないようにするため。
+
+> **実装状況（2026-09-22）**: ex001〜ex012（Chapter 01〜03）を実装済み。全12演習。
+> `check-exercises`（進捗確認CLI）は未実装。代わりに `tools/verify_solutions.sh`
+> （下記）で「解答なら通る」ことを確認できる。
+>
+> **確認方法についての注意**: `cargo fmt` / `cargo clippy` は、**全演習に解答を重ねた状態**
+> （骨組みの `todo!()` のままではない状態）で確認している。骨組みのままだと、
+> `todo!()` の本体が引数を使わないため、clippy が `unused variable` で
+> `-D warnings` に失敗する。これは §6 の CI 設計が
+> 「clippyの対象は `tools/check-exercises` のみで、演習骨組みは対象外」と
+> していた理由そのものであり、意図した挙動である。
+> （このリポジトリの検証環境には rustfmt / clippy が無かったため、apt の
+> `rustfmt` / `rust-clippy` パッケージを追加して確認した）。
+>
+> **`ex012_non_exhaustive` は独立したnested workspace**（`lib/` と `app/` の2crate）。
+> ルートの `Cargo.toml` の `exclude` で明示的に除外している。理由:
+> Lesson 03-4 の主題（`#[non_exhaustive]` が「別crateの利用者」に与える影響）を
+> 確認するには、本当に別crateである必要があるため。実行は
+> `cd exercises/ex012_non_exhaustive && cargo test`。
+>
+> **`tools/verify_solutions.sh`**: `solutions/` の内容を対応する `exercises/`
+> の `src/lib.rs` に一時的に上書きし、`cargo test`（`--fmt` / `--clippy` で追加検証も）
+> を実行してから、骨組みへ自動で復元するスクリプト（bash の `trap` で、
+> 失敗時・中断時も復元されることを確認済み）。§4.5 で述べていた
+> 「解答検証（R5）」の手動運用版であり、`check-exercises --solutions`
+> （Rust実装、未着手）の代わりに今すぐ使える。CIの `solutions` ジョブから呼ばれる。
 
 ### 4.4 `check-exercises`（Phase 4で実装）
 

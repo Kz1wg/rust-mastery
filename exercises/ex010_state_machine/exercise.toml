@@ -1,0 +1,5 @@
+id = "ex010_state_machine"
+title = "ドアの状態機械"
+lesson = "03-2"
+difficulty = 3
+concepts = ["state machine", "Result", "invalid transitions"]

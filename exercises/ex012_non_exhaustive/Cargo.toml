@@ -1,0 +1,5 @@
+# この演習だけ、独立した小さなworkspace（lib と app の2crate）になっている。
+# ルートのworkspace（exercises/*）からは除外されている（ルートの Cargo.toml を参照）。
+[workspace]
+resolver = "2"
+members = ["lib", "app"]

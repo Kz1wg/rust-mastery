@@ -1,0 +1,5 @@
+id = "ex006_newtype"
+title = "newtypeで単位の取り違えを防ぐ"
+lesson = "02-2"
+difficulty = 2
+concepts = ["newtype", "From", "compile_fail"]

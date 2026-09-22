@@ -1,0 +1,5 @@
+id = "ex008_visibility"
+title = "フィールドの公開範囲で不変条件を守る"
+lesson = "02-4"
+difficulty = 3
+concepts = ["visibility", "invariants", "compile_fail"]

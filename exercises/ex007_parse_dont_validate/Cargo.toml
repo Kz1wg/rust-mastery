@@ -1,0 +1,5 @@
+[package]
+name = "ex007_parse_dont_validate"
+version = "0.1.0"
+edition = "2021"
+publish = false

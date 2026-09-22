@@ -1,0 +1,5 @@
+id = "ex007_parse_dont_validate"
+title = "検証済みの型を作る（parse, don't validate）"
+lesson = "02-3"
+difficulty = 2
+concepts = ["parse dont validate", "Result", "Option", "private fields"]

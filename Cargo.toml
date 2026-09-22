@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = ["exercises/*"]
+# ex012_non_exhaustive は lib/app の2crateからなる、独立した
+# workspace になっている（Lesson 03-4: 別crateの利用者から見た
+# #[non_exhaustive] の挙動を確認するため）。ルートの glob に
+# 巻き込まれないよう明示的に除外する。
+exclude = ["exercises/ex012_non_exhaustive"]
+
+# tools/check-exercises は Phase 4 の後半で追加する。追加時に
+# `default-members = ["tools/check-exercises"]` を設定し、
+# ルートでの `cargo build` / `cargo test` が演習ではなくツールを
+# 対象にするようにする（ARCHITECTURE.md §2）。
+# それまでは演習ごとに `cargo test -p <name>` を使うこと
+# （未着手の演習は todo!() で失敗するのが正常な状態のため）。

@@ -6,7 +6,7 @@ Rustの文法を教える教材ではありません。
 「この状態は型で表現した方がいいか？」「このtraitは本当に必要か？」「このAPIは利用者に何を保証するか？」——
 そう考えられるようになることが目的です。
 
-> 開発状況: **Phase 3 完了**（設計 + mdBook + 第1〜3章）。演習crate（`cargo test` で判定）は Phase 4 で追加します。現状、各Lessonの Exercise 節は**仕様のみ**で、対応するcrateはまだありません。
+> 開発状況: **Phase 4 進行中**。設計・mdBook・第1〜3章・全12演習（ex001〜ex012、Chapter 01〜03）を実装済みです。`check-exercises`（進捗確認CLI）と Chapter 04 以降はまだです。
 
 ## 対象者
 
@@ -50,12 +50,44 @@ mdbook test             # 本文中のRustコードを検証
 python3 tools/check_error_codes.py   # どのディレクトリからでも実行可
 ```
 
-## 演習の実行（Phase 4で提供）
+## 演習の実行
 
 ```bash
-cargo test -p ex001_newtype                      # 1つの演習を判定
-cargo run --bin check-exercises                  # 全演習の進捗を確認
+cargo test -p ex001_move_semantics    # 1つの演習を判定（ex001〜ex011 が対象）
 ```
+
+`ex012_non_exhaustive` だけは、独立した2crate（`lib`/`app`）構成なので:
+
+```bash
+cd exercises/ex012_non_exhaustive && cargo test
+```
+
+`cargo test`（ルートで、`-p` なし）は使わないでください。未着手の演習は `todo!()` で
+失敗するのが正常な状態であり、ワークスペース全体のテストは常に失敗します
+（`check-exercises` を実装するまでの暫定挙動。詳細は `ARCHITECTURE.md` §2）。
+
+## 解答の検証（メンテナ向け）
+
+全演習の解答が正しく動くことを、骨組みへ一時的に上書きして確認できます
+（終了時に骨組みへ自動で復元されます）:
+
+```bash
+./tools/verify_solutions.sh              # cargo test のみ
+./tools/verify_solutions.sh --fmt --clippy  # fmt / clippy も含める
+```
+
+## CI
+
+`.github/workflows/ci.yml` が、push・PR ごとに次を確認します。
+
+- mdBookのビルドと `mdbook test`
+- `compile_fail` のエラーコード検証（`tools/check_error_codes.py`）
+- 演習の骨組みがビルドできること
+- 解答が test / fmt / clippy を通ること（`tools/verify_solutions.sh --fmt --clippy`）
+
+> このワークフローは、実際にGitHub Actions上で実行して確認したものではありません。
+> 各ステップに相当するコマンドをローカルで実行し、通ることは確認しています。
+> 最初のpush後、Actionsタブで結果を確認してください。
 
 演習の骨組みは `exercises/`、模範解答は `solutions/` にあります。**まず自分で解き、答えを見るのは最後にしてください。**
 
@@ -78,3 +110,7 @@ tools/       check-exercises など           ← Phase 4
 ```
 
 詳細は [ARCHITECTURE.md](ARCHITECTURE.md) を参照。
+
+## ライセンス
+
+MIT License。詳細は [LICENSE](LICENSE) を参照してください。

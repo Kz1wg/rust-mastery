@@ -1,0 +1,5 @@
+[package]
+name = "ex004_compare_signatures"
+version = "0.1.0"
+edition = "2021"
+publish = false
