@@ -140,14 +140,16 @@ pub struct Options {
 
 ## Exercise
 
-**`ex012_non_exhaustive`**（Phase 4 で提供）
+**`ex012_non_exhaustive`** — `cd exercises/ex012_non_exhaustive && cargo test` で判定します
+（`lib` と `app` の2crateからなる独立した workspace なので、`-p` ではなくディレクトリ内で実行します）。
 
-2つの crate（`lib` と `app`）からなる小さな workspace を扱います。
-
-| 課題 | 仕様 |
+| crate | 内容 |
 | --- | --- |
-| `lib` の `Event` | 現在は `Click` と `Key` のみ。**`#[non_exhaustive]` を付け**、`Scroll` を追加しても `app` が壊れないようにする |
-| `app` の `handle(Event)` | `_ =>` の腕で、未知のイベントを**ログに出して無視**する。処理を変えたときのテストが通ること |
+| `lib`（`ex012_lib`） | `#[non_exhaustive]` 付きの `enum Event { Click, Key, Scroll }` は用意済み。`Scroll` は「`app` を書いた後から追加されたバリアント」という想定 |
+| `app`（`ex012_app`） | `handle(Event) -> String` を実装する。`Click` と `Key` は説明文を、それ以外（`_ =>`）は汎用メッセージを返す |
+
+実装できたら、`app` の `_ =>` の腕を一度消してみてください。別crateからの `match` なので、
+`error[E0004]` になることを確認できます。
 
 ## Challenge
 

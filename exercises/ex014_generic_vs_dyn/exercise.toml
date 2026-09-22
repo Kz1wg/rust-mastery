@@ -1,0 +1,5 @@
+id = "ex014_generic_vs_dyn"
+title = "静的ディスパッチと動的ディスパッチの使い分け"
+lesson = "04-2"
+difficulty = 2
+concepts = ["generics", "dyn Trait", "static vs dynamic dispatch"]

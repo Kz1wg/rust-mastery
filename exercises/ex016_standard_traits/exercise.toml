@@ -1,0 +1,5 @@
+id = "ex016_standard_traits"
+title = "TryFromと、秘密を隠すDebug実装"
+lesson = "04-4"
+difficulty = 2
+concepts = ["TryFrom", "Debug", "Display"]

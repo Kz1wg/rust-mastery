@@ -1,0 +1,5 @@
+id = "ex032_static_bound"
+title = "T: 'static は「永遠に生きる」ではない"
+lesson = "08-3"
+difficulty = 2
+concepts = ["'static bound", "Box<dyn Fn>", "compile_fail"]

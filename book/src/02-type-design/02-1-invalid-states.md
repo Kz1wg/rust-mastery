@@ -132,12 +132,16 @@ fn can_delete(role: Role) -> bool {
 
 ## Exercise
 
-**`ex005_invalid_states`**（Phase 4 で提供）
+**`ex005_invalid_states`** — `cargo test -p ex005_invalid_states` で判定します。
+（`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |
 | --- | --- |
-| 信号機 | `struct Light { red: bool, yellow: bool, green: bool }` を `enum` に置き換え、`fn next(self) -> Self` を実装 |
-| 注文 | `struct Order { paid: bool, shipped: bool, delivered: bool }` を分析し、「有効な状態」の一覧を `NOTES.md` に書く。そのうえで `enum` に置き換える |
+| 信号機 | `enum Light { Red, Yellow, Green }` は用意済み。`fn next(self) -> Self`（Green → Yellow → Red → Green）を実装 |
+| 注文 | `enum OrderStatus`（Pending / Paid / Shipped / Delivered）は用意済み。`all_statuses()` と `label()` を実装 |
+
+元の `struct Order { paid: bool, shipped: bool, delivered: bool }` が表現できてしまった
+無効な状態を、任意で `NOTES.md` に書き出してください（型を自分で書き換える体験は、本文の Think / Solution で行います）。
 
 ## Challenge
 

@@ -44,7 +44,28 @@ rust-mastery/
 │   ├── ex009_enum_states/     # Chapter 03（4つ）
 │   ├── ex010_state_machine/
 │   ├── ex011_typestate/
-│   └── ex012_non_exhaustive/  # lib/app の2crateからなる独立workspace（下記）
+│   ├── ex012_non_exhaustive/  # lib/app の2crateからなる独立workspace（下記）
+│   ├── ex013_trait_purpose/   # Chapter 04（5つ）
+│   ├── ex014_generic_vs_dyn/
+│   ├── ex015_associated_type/
+│   ├── ex016_standard_traits/
+│   ├── ex017_review_logger/
+│   ├── ex018_generic_benefit/ # Chapter 05（4つ）
+│   ├── ex019_trait_bounds/
+│   ├── ex020_impl_trait/
+│   ├── ex021_gat_basics/
+│   ├── ex022_result_design/   # Chapter 06（4つ）
+│   ├── ex023_custom_error_types/
+│   ├── ex024_error_propagation/
+│   ├── ex025_library_vs_application/
+│   ├── ex026_adapters_vs_for/  # Chapter 07（4つ）
+│   ├── ex027_custom_iterator/
+│   ├── ex028_laziness_and_allocation/
+│   ├── ex029_borrowing_iterators/
+│   ├── ex030_lifetime_annotations/ # Chapter 08（4つ）
+│   ├── ex031_struct_with_reference/
+│   ├── ex032_static_bound/
+│   └── ex033_hrtb/
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
 │   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
 ├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
@@ -171,8 +192,8 @@ no-section-label = true   # 章番号（00〜18, A〜C）はタイトル文字�
 ### 4.3 `exercise.toml`（メタデータ）
 
 ```toml
-id = "ex001_newtype"
-title = "newtypeでIDを型付けする"
+id = "ex006_newtype"
+title = "newtypeで単位の取り違えを防ぐ"
 lesson = "02-2"              # ROADMAPのLesson ID
 difficulty = 1               # 1〜5
 concepts = ["newtype", "type safety"]
@@ -182,9 +203,8 @@ prerequisites = ["ex000_..."] # 省略可
 `check-exercises` はこのファイルを読んで一覧・進捗を表示する。
 メタデータを演習crateの外（本文）に持たせないのは、本文の書き換えで進捗管理が壊れないようにするため。
 
-> **実装状況（2026-09-22）**: ex001〜ex012（Chapter 01〜03）を実装済み。全12演習。
-> `check-exercises`（進捗確認CLI）は未実装。代わりに `tools/verify_solutions.sh`
-> （下記）で「解答なら通る」ことを確認できる。
+> **実装状況（2026-09-22）**: ex001〜ex033（Chapter 01〜08）を実装済み。全33演習。
+> `check-exercises`（進捗確認CLI、下記）と `tools/verify_solutions.sh`（下記）の両方が使える。
 >
 > **確認方法についての注意**: `cargo fmt` / `cargo clippy` は、**全演習に解答を重ねた状態**
 > （骨組みの `todo!()` のままではない状態）で確認している。骨組みのままだと、
@@ -208,7 +228,7 @@ prerequisites = ["ex000_..."] # 省略可
 > 「解答検証（R5）」の手動運用版であり、`check-exercises --solutions`
 > （Rust実装、未着手）の代わりに今すぐ使える。CIの `solutions` ジョブから呼ばれる。
 
-### 4.4 `check-exercises`（Phase 4で実装）
+### 4.4 `check-exercises`
 
 ```bash
 cargo run --bin check-exercises                 # 全演習を実行し進捗を表示
@@ -216,19 +236,44 @@ cargo run --bin check-exercises -- --lesson 02  # 章で絞り込み
 cargo run --bin check-exercises -- --solutions  # 解答検証（メンテナ向け）
 ```
 
-出力例（設計イメージ）:
+出力例（実際の出力）:
 
 ```text
 01 Ownership & Borrowing
-  ✅ ex001_move_semantics        (01-1)
-  ❌ ex002_borrow_errors         (01-2)   2 failed
-  ⬜ ex003_signatures            (01-4)   not started
+  ⬜ ex001_move_semantics         (01-1)  not started
+  ...
 
-Progress: 1 / 3
+03 Enum & State Machine
+  ⬜ ex009_enum_states            (03-1)  not started
+  ❌ ex010_state_machine          (03-2)  11 failed
+  ...
+
+Progress: 0 / 12
 ```
 
-- 「未着手」の判定は、`todo!()` の panic（`not yet implemented`）で失敗している演習を `not started`、それ以外の失敗を `failed` とする。
-- 実装は `std::process::Command` で `cargo test --manifest-path ... --message-format=json` を実行して結果を集約する。依存crateは `toml` のみを許容する（メタデータ解析）。
+- 「未着手」の判定は、`todo!()` の panic メッセージ（`not yet implemented`。カスタムメッセージ付き
+  `todo!("...")` でも実際には `"not yet implemented: ..."` という形で出力されることを確認済み）で
+  全テストが失敗している演習を `not started`、一部だけ通っている演習を `failed` とする。
+  1つもテストが実行されなかった場合（ビルド失敗、またはテストが1つも定義されていない場合の
+  両方を区別できない）は `⚠️ build error` とする。
+- 実装は `std::process::Command` で `cargo test --quiet` を実行し、通常の人間向け出力
+  （`test result: ok. N passed; M failed; ...` の行、複数出現しうる — lib単体テスト・
+  `tests/tests.rs`・doctest それぞれに1行ずつ出る — を合算する）を単純な文字列走査で
+  解析する。**`--message-format=json` は使っていない**（人間向け出力で十分だったため）。
+- **依存crateはゼロ**（標準ライブラリのみ）。当初 `toml` クレートを使う設計だったが、
+  ビルドを試みたところ `toml` の依存先 `indexmap` の新しいバージョンが edition2024 を
+  要求し、開発環境のRust 1.75ではビルドできなかった。exercise.toml も Cargo.toml も
+  このプロジェクト自身が書く単純な形式（1行1キー、ネストなし）なので、`toml_get_string` /
+  `toml_get_string_array` という自前の最小パーサーで代替した（TOML全般には対応しない）。
+- `ex012_non_exhaustive`（nested workspace）は自動判別する：演習の `Cargo.toml` が
+  `[workspace]` を含む場合、`cargo test`（`-p` なし）をその演習ディレクトリで実行し、
+  `members` を読んでsolutions側との対応ファイルを列挙する。lib/appという名前に
+  依存しない、汎用的な実装。
+- `--solutions` は、対応する `solutions/` のファイルを一時的に重ねてテストを実行し、
+  `Drop` で必ず元に戻す（`OverlayGuard`）。異常終了時も復元されることを確認済み。
+  `cargo fmt` / `cargo clippy` の検証は含まない（それは `tools/verify_solutions.sh` の役割。
+  両者は目的が異なるため併存させている：`check-exercises --solutions` は進捗確認の
+  延長として手軽に使うもの、`verify_solutions.sh --fmt --clippy` はCIのゲート）。
 
 ### 4.5 解答検証（R5）
 
@@ -254,22 +299,31 @@ exercises/exNNN_ai_review/
 学習フロー: AIにPROMPT.mdを解かせる（または `src/lib.rs` を用いる）→ 問題点を `REVIEW.md` に書く → 修正 → `cargo test`。
 評価は「テストが通ること」＋「REVIEW.md に設計上の問題を3つ以上、理由つきで挙げられていること」（後者は自己チェックリスト）。
 
-## 6. CI（Phase 4）
+> **実装状況（2026-09-22）**: この構造（PROMPT.md / REVIEW.md 付き）の演習はまだ無い。
+> Lesson 04-5 の `ex017_review_logger` は、問題のあるコードを doc コメントで示して書き直させる
+> 簡易版にとどまっている。本格的なAIレビュー型演習は Appendix B と合わせて追加する予定。
+
+## 6. CI
+
+`.github/workflows/ci.yml` の4ジョブ:
 
 | ジョブ | コマンド | 目的 |
 | --- | --- | --- |
-| book-build | `mdbook build book` | 本のビルド |
-| book-test | `mdbook test book` | 本文コードの検証 |
+| book | `mdbook build book` / `mdbook test book` | 本のビルドと本文コードの検証 |
 | error-codes | `python3 tools/check_error_codes.py` | `compile_fail` のエラーコード一致の検証 |
-| fmt | `cargo fmt --all --check` | rustfmt |
-| clippy | `cargo clippy -p check-exercises -- -D warnings` | 演習ツールのlint（骨組みは `todo!()` を含むため対象外） |
+| exercises-build | `cargo build --workspace` / `cargo fmt --all --check`（ex012 はディレクトリ内で別途） | 骨組みがコンパイルでき、rustfmt 済みであること |
+| solutions | `./tools/verify_solutions.sh --fmt --clippy` | 解答を重ねて test / fmt / clippy が通ること |
 
-> **実装状況（2026-09-22）**: `.github/workflows/ci.yml` に4ジョブ（book / error-codes /
-> exercises-build / solutions）を実装し、GitHub Actions上で実行して全て通ることを確認した。
-> `actions/checkout@v5` と `dtolnay/rust-toolchain@stable`（composite action、Node runtimeなし）
-> のみを使い、`peaceiris/actions-mdbook`（2024年から更新停止、Node 24未対応）は使わず、
-> mdBookのプリビルドバイナリを `curl` で直接取得している。
-| solutions | `cargo run --bin check-exercises -- --solutions` | 解答検証 |
+骨組み（`todo!()` を含む）そのものに clippy をかけると未使用引数で失敗するため、
+fmt / clippy は**解答を重ねた状態**で検証する（§4 の実装状況の注記を参照）。
+
+使用する action は `actions/checkout@v5` と `dtolnay/rust-toolchain@stable`（composite action、
+Node runtime なし）のみ。`peaceiris/actions-mdbook`（2024年から更新停止、Node 24 未対応）は使わず、
+mdBook のプリビルドバイナリを `curl` で直接取得している。
+
+> **実行確認の状況（2026-09-22）**: `checkout@v4` 版の初回実行では、Node.js 20 非推奨の警告と
+> ubuntu-latest 移行の notice のみが報告された（失敗の報告は無し）。`checkout@v5` への更新と
+> mdBook の取得方法変更の後の実行結果は、まだ確認していない。
 
 ## 7. 未決事項
 

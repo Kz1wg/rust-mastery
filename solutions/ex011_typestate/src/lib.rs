@@ -1,12 +1,14 @@
-use std::marker::PhantomData;
-
+/// URL がまだ設定されていない状態。
 pub struct NoUrl;
-pub struct HasUrl;
+
+/// URL が設定済みの状態。URL 自体をこの状態が持つ。
+pub struct HasUrl {
+    url: String,
+}
 
 pub struct RequestBuilder<S> {
-    url: Option<String>,
+    state: S,
     headers: Vec<(String, String)>,
-    _state: PhantomData<S>,
 }
 
 #[derive(Debug, PartialEq)]
@@ -18,9 +20,8 @@ pub struct Request {
 impl RequestBuilder<NoUrl> {
     pub fn new() -> Self {
         RequestBuilder {
-            url: None,
+            state: NoUrl,
             headers: Vec::new(),
-            _state: PhantomData,
         }
     }
 
@@ -31,9 +32,10 @@ impl RequestBuilder<NoUrl> {
     /// ```
     pub fn url(self, url: &str) -> RequestBuilder<HasUrl> {
         RequestBuilder {
-            url: Some(url.to_string()),
+            state: HasUrl {
+                url: url.to_string(),
+            },
             headers: self.headers,
-            _state: PhantomData,
         }
     }
 }
@@ -52,7 +54,7 @@ impl RequestBuilder<HasUrl> {
 
     pub fn build(self) -> Request {
         Request {
-            url: self.url.unwrap(),
+            url: self.state.url,
             headers: self.headers,
         }
     }

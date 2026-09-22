@@ -130,7 +130,8 @@ fn main() {
 この考え方は "parse, don't validate" と呼ばれます。
 **「`bool` を返す検証」は情報を捨て、「型を返すパース」は情報を残します。**
 
-**注意**: ここでの検証は「`@` が1つあり両側が空でない」だけの簡易版です。
+**注意**: ここでの検証は「`@` を含み、最初の `@` の前後が空でない」だけの簡易版です
+（`split_once` は最初の `@` で分けるだけなので、`a@b@c` も通ります）。
 実際のメールアドレスの仕様は複雑で、検証を厳密にしすぎると正当なアドレスを弾きます。
 どこまで検証するかは**要件の問題**であり、型が保証するのは「この関数が検証した範囲」です。
 
@@ -168,17 +169,17 @@ fn main() {
 | --- | --- | --- |
 | 独自の `Email::parse(&str)` | 名前が明快。引数の型を自由に選べる | 標準のtraitと連携しない |
 | `FromStr`（`"..".parse::<T>()`） | 標準的な書き方。エコシステムと連携 | 入力が `&str` に限られる |
-| `TryFrom<U>` | 別の型からの変換に使える | エラー型を `Error` として揃える必要がある |
+| `TryFrom<U>` | `&str` 以外の型（`u8` など）からの変換にも使える。`.try_into()` が使える | `.parse()` 構文は使えない。エラー型は関連型 `Error` として定義する |
 
 ## Exercise
 
-**`ex007_parse_dont_validate`**（Phase 4 で提供）
+**`ex007_parse_dont_validate`** — `cargo test -p ex007_parse_dont_validate` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |
 | `Percentage` | 0〜100 の整数のみ。`Percentage::new(u8) -> Result<Percentage, PercentageError>`。private フィールド |
 | `NonEmptyString` | 空でない文字列。`NonEmptyString::new(String) -> Option<NonEmptyString>` |
-| 使う側の関数 | `fn describe(p: Percentage) -> String` は再検証しない（テストで不正値を渡せないことを `compile_fail` doctest で確認） |
+| 使う側の関数 | `fn describe(p: Percentage) -> String` は範囲を再検証しない。不正な `Percentage` を外部から直接作れないことは `compile_fail` doctest で確認 |
 
 ## Challenge
 

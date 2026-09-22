@@ -1,0 +1,5 @@
+id = "ex021_gat_basics"
+title = "GATでborrowするイテレータを返すtraitを定義する"
+lesson = "05-4"
+difficulty = 2
+concepts = ["GAT", "generic associated types", "lifetimes"]

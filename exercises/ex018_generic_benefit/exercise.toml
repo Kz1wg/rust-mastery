@@ -1,0 +1,5 @@
+id = "ex018_generic_benefit"
+title = "重複を1つのgeneric関数にまとめる"
+lesson = "05-1"
+difficulty = 1
+concepts = ["generics", "deduplication"]

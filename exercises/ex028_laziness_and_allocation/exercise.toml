@@ -1,0 +1,5 @@
+id = "ex028_laziness_and_allocation"
+title = "中間Vecを作らずimpl Iteratorを返す"
+lesson = "07-3"
+difficulty = 2
+concepts = ["laziness", "impl Iterator", "collect"]

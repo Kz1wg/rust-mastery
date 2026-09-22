@@ -138,3 +138,27 @@ Concept → Why? → Bad Example → Problem → Think → Hint
 | 2026-09-22 | `.github/workflows/ci.yml` はローカルで同等コマンドの成功のみ確認し、GitHub Actions上での実行では確認していない | このサンドボックスにGitHub Actionsを実行する手段がないため。最初のpush後、Actionsタブでの確認をユーザーに委ねる |
 | 2026-09-22 | GitHub Actionsで実行し、Node.js 20非推奨の警告（actions/checkout@v4, peaceiris/actions-mdbook@v2）を確認。actions/checkout@v5へ更新し、peaceiris/actions-mdbook（2024年から更新停止）はmdBookバイナリの直接curlダウンロードに置き換えた | ユーザーからの実行結果報告。peaceiris/actions-mdbookはNode24対応の見込みが薄いメンテナンス停止プロジェクトのため、サードパーティNode actionへの依存自体をなくす方針にした |
 | 2026-09-22 | `ubuntu-latest` が2026-10-19からUbuntu 26に移行するというnoticeが出ているが、対応は保留（現時点ではUbuntu 24のまま動作しており、移行後の互換性は未検証） | 情報提供のみのnoticeであり、今すぐ変更が必要な警告ではないため |
+| 2026-09-22 | `check-exercises` を実装した | ユーザーからの依頼どおり |
+| 2026-09-22 | `check-exercises` の依存を `toml` クレートからゼロ依存（自前の最小パーサー）に変更した | `toml` の依存先 `indexmap` が新しいバージョンでedition2024を要求し、開発環境のRust 1.75でビルドできなかったため。exercise.toml/Cargo.tomlは自分たちが書く単純な形式なので、自前パーサーで十分と判断した |
+| 2026-09-22 | ルートworkspaceに `default-members = ["tools/check-exercises"]` を設定した | ARCHITECTURE.mdが当初から計画していたとおり。これで、ルートで `-p` なしの `cargo build`/`cargo test` を実行しても、未着手の演習を巻き込まなくなった |
+| 2026-09-22 | `check-exercises --solutions` と `tools/verify_solutions.sh` の両方を残した（前者はfmt/clippyを検証しない） | 目的が異なる：前者は進捗確認の延長として手軽に使うもの、後者はCIのゲート（fmt/clippyも含む）。統合すると複雑になるため、役割を分けたまま両方残す判断をした |
+| 2026-09-22 | Chapter 04（Traits）の本文5 Lessonと演習5つ（ex013〜ex017）を実装。全17演習になった | 予定どおり |
+| 2026-09-22 | ex013で再び `todo!()` 内の `{}` 補間バグを踏んだ（今回は `{var}` 名前付き補間で `cannot find value` エラー）。5回目 | 何度も同じミスをしているため、Lesson作成時のチェックリストとして明記した（docs/exercise-index.md） |
+| 2026-09-22 | `solutions/` へのfmt書き戻し忘れで `verify_solutions.sh --fmt` が失敗する問題を発見・修正した（ex013） | 一時的に `exercises/` 側でfmtして満足し、`solutions/` への書き戻しを忘れていた。`check-exercises --solutions` はfmtを検証しないため見逃していた——2つのツールを併用している価値が実際に発揮された事例 |
+| 2026-09-22 | Chapter 05（Generics）の本文4 Lessonと演習4つ（ex018〜ex021）を実装。全21演習になった | 予定どおり |
+| 2026-09-22 | `-> impl Trait` を返す関数の骨組みで、本体をまるごと `todo!()` にするとopaque type推論が失敗する（`() is not an iterator`）ことを発見した（ex020） | rustcの制約。外側の式構造は骨組みに残し、`todo!()` は内側の式にのみ埋め込む方針にした。今後の演習作成でも注意すべき点としてdocs/exercise-index.mdに記録した |
+| 2026-09-22 | Chapter 06（Error Handling）の本文4 Lessonと演習4つ（ex022〜ex025）を実装。全25演習になった | 予定どおり |
+| 2026-09-22 | mainがResultを返す例（06-3 Deep Dive）が実際に実行され、存在しないファイルの読み込みで失敗した | `rust`のみのコードブロックはmdbook testで実行される。概念を示すだけの例は`no_run`にする必要があることを再確認した |
+| 2026-09-22 | ex024の初期設計は、`?`の代わりに`.map_err()`を使っていたため、テーマである「`?`がFromを経由する」ことを実際には検証していなかった | 演習を書く際、テストではなく「その演習が検証すべき概念」を先に確認すべきだった教訓。再設計してFrom経由を実際にテストする形にした |
+| 2026-09-22 | Chapter 07（Iterator）の本文4 Lessonと演習4つ（ex026〜ex029）を実装。全29演習になった | 予定どおり |
+| 2026-09-22 | 解答を重ねた段階でex026・ex027のテスト自体にバグが見つかった（期待値の計算間違い、u64オーバーフロー） | 骨組みの todo!() 失敗確認だけでは検出できない種類のミス。解答を重ねてグリーンになることの確認が、テストの正しさそのものの検証としても機能した実例 |
+| 2026-09-22 | Chapter 01〜07 を監査し、訂正した（詳細は下記） | Chapter 08 着手前の利用者からの依頼 |
+| 2026-09-22 | 本文の事実誤認を訂正: 01-4（in-place collect で外側のバッファは再利用されうる）、02-3（`split_once` は `@` が1つであることを保証しない／`TryFrom` の説明）、04-2（戻り値の `Box<Self>` も object safety 違反。`where Self: Sized` の逃げ道を追記）、04-3（実装が1つなら推論は通る。本当の問題は2つ目の impl で呼び出し側が E0283 で壊れること）、05-2（`where` でしか書けない例が常に成り立つ無意味な bound だった → `String: From<T>` に差し替え）、07-2（u64 のフィボナッチは93個目の取得で溢れる）、07-3（`+ '_` を説明していなかった → E0700 の例を追加）、07-4（「唯一の入力lifetimeを暗黙に借用」は不正確 → 戻り値の型にlifetimeが現れるかが分かれ目） | いずれも実機（Rust 1.75, edition 2021）で確認してから訂正した |
+| 2026-09-22 | Chapter 01〜03 の Exercise 節が、実装した演習と食い違っていたのを訂正（「Phase 4 で提供」の削除、型が用意済みであること、`NOTES.md` は任意であること等）。全 Lesson の Exercise 節に実行コマンドを明記 | 本文を先に書き、演習を後から規約に合わせて作ったため、本文側の更新が漏れていた |
+| 2026-09-22 | ex011 を再設計: URL を `Option<String>` にして `build` で `unwrap` していたのを、`HasUrl` 状態が URL を持つ形に変更（`PhantomData` も不要になった） | typestate の Lesson の演習が、型で表すべき不変条件を `unwrap` に頼っていたのは教材として矛盾していた |
+| 2026-09-22 | ex028 の「遅延評価を検証する」と称したテストを削除 | 外側で `inspect` を足しているだけで、`doubled` が内部で `collect` していても通ってしまい、何も検証していなかった。外部から検証できない性質は、テストのふりをせず自己レビューに回す方針にした |
+| 2026-09-22 | ARCHITECTURE.md の「GitHub Actions 上で全て通ることを確認した」という記述を訂正 | 確認できていたのは `checkout@v4` 版の初回実行（警告のみ）だけで、`v5` 更新後の結果は未確認だった |
+| 2026-09-22 | CI の exercises-build ジョブに骨組みの `cargo fmt --all --check` を追加 | ex029 の骨組みだけが未整形のまま残っていた。解答側しか fmt を検査していなかったため見逃していた |
+| 2026-09-22 | Chapter 08（Lifetimes）の本文4 Lessonと演習4つ（ex030〜ex033）を実装。全33演習になった | 予定どおり |
+| 2026-09-22 | 08-2 の中心を「構造体のメソッドの戻り値を `&self` と構造体の `'a` のどちらに結びつけるか」にした | 実機で `Option<&str>` を返すと2回目の呼び出しが E0499 になることを確認し、lifetime の結びつけ方が設計の問題として現れる最も分かりやすい例だと判断した |
+| 2026-09-22 | 08-1 と ex030 の `first<'a, 'b>` を、慣用的な `first<'a>(a: &'a str, _b: &str)` に変更（明示版は説明として残した） | clippy の `needless_lifetimes` に指摘された。省略規則1により別の lifetime が割り当てられるので、名前を付ける必要があるのは関係を宣言する lifetime だけ、という点を本文に加えた |

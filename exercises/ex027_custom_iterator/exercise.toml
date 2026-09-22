@@ -1,0 +1,5 @@
+id = "ex027_custom_iterator"
+title = "Iteratorを自作する（Fibonacci）"
+lesson = "07-2"
+difficulty = 2
+concepts = ["Iterator trait", "lazy evaluation"]

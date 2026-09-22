@@ -1,0 +1,5 @@
+id = "ex022_result_design"
+title = "Errの粒度を呼び出し側の要求に合わせて設計する"
+lesson = "06-1"
+difficulty = 2
+concepts = ["Result design", "error granularity"]

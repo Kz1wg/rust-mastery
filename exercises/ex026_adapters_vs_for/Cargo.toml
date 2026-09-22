@@ -1,0 +1,5 @@
+[package]
+name = "ex026_adapters_vs_for"
+version = "0.1.0"
+edition = "2021"
+publish = false

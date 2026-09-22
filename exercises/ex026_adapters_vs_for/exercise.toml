@@ -1,0 +1,5 @@
+id = "ex026_adapters_vs_for"
+title = "adapterの連鎖とforループの使い分け"
+lesson = "07-1"
+difficulty = 1
+concepts = ["iterator adapters", "for loop", "readability"]

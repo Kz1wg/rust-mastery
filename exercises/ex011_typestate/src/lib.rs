@@ -1,19 +1,21 @@
 //! Lesson 03-3: typestate pattern
 //!
 //! `url()` を呼ぶ前は `build()` が**存在しない**（コンパイルエラーになる）。
-//! 状態を型パラメータ（`NoUrl` / `HasUrl`）で表しているため、
-//! `PhantomData` を使っている（詳しくは Chapter 09-1 で扱う。
-//! ここでは「型だけの目印を持たせるための仕組み」とだけ理解すれば十分）。
+//! URL は `Option<String>` ではなく `HasUrl` 状態の中に持たせているので、
+//! `build()` で `unwrap` する必要が無い。「URLがある」ことを型で表した結果である。
 
-use std::marker::PhantomData;
-
+/// URL がまだ設定されていない状態。
 pub struct NoUrl;
-pub struct HasUrl;
+
+/// URL が設定済みの状態。URL 自体をこの状態が持つ。
+/// フィールドは private なので、外部から `HasUrl` を偽造することはできない。
+pub struct HasUrl {
+    url: String,
+}
 
 pub struct RequestBuilder<S> {
-    url: Option<String>,
+    state: S,
     headers: Vec<(String, String)>,
-    _state: PhantomData<S>,
 }
 
 #[derive(Debug, PartialEq)]
@@ -25,9 +27,8 @@ pub struct Request {
 impl RequestBuilder<NoUrl> {
     pub fn new() -> Self {
         RequestBuilder {
-            url: None,
+            state: NoUrl,
             headers: Vec::new(),
-            _state: PhantomData,
         }
     }
 
@@ -42,7 +43,7 @@ impl RequestBuilder<NoUrl> {
     /// let req = RequestBuilder::new().build(); // NoUrl には build がない
     /// ```
     pub fn url(self, url: &str) -> RequestBuilder<HasUrl> {
-        todo!("url を設定した RequestBuilder<HasUrl> を返してください（headers は引き継ぐ）")
+        todo!("state を HasUrl（url を保持）にした RequestBuilder を返してください（headers は引き継ぐ）")
     }
 }
 
@@ -58,7 +59,8 @@ impl RequestBuilder<HasUrl> {
         todo!("headers に (key, value) を追加した Self を返してください")
     }
 
+    /// `HasUrl` 状態が URL を持っているので、unwrap は不要。
     pub fn build(self) -> Request {
-        todo!("url は unwrap してよい（HasUrl の時点で必ず Some）。Request を組み立てて返してください")
+        todo!("self.state の url と self.headers から Request を組み立ててください")
     }
 }

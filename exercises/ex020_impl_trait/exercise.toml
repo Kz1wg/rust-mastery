@@ -1,0 +1,5 @@
+id = "ex020_impl_trait"
+title = "引数位置・戻り値位置のimpl Trait"
+lesson = "05-3"
+difficulty = 2
+concepts = ["impl Trait", "static dispatch"]

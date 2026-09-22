@@ -1,0 +1,5 @@
+id = "ex019_trait_bounds"
+title = "不要なtrait boundを削る"
+lesson = "05-2"
+difficulty = 1
+concepts = ["trait bounds", "where clause"]

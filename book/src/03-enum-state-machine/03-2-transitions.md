@@ -194,7 +194,7 @@ fn main() {
 
 ## Exercise
 
-**`ex010_state_machine`**（Phase 4 で提供）
+**`ex010_state_machine`** — `cargo test -p ex010_state_machine` で判定します。
 
 ドアの状態機械を実装します。
 

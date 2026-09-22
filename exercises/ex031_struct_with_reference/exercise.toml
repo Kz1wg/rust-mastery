@@ -1,0 +1,5 @@
+id = "ex031_struct_with_reference"
+title = "参照を持つ構造体のメソッドを、元データのlifetimeに結びつける"
+lesson = "08-2"
+difficulty = 3
+concepts = ["struct lifetimes", "elision", "borrowing"]

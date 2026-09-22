@@ -222,7 +222,7 @@ fn main() {
 
 ## Exercise
 
-**`ex011_typestate`**（Phase 4 で提供）
+**`ex011_typestate`** — `cargo test -p ex011_typestate` で判定します。
 
 `RequestBuilder` を typestate で実装します。
 
@@ -231,9 +231,11 @@ fn main() {
 | `RequestBuilder<NoUrl>` | `new()` と `url(self, &str) -> RequestBuilder<HasUrl>` |
 | `RequestBuilder<HasUrl>` | `header(self, k, v) -> Self` と `build(self) -> Request` |
 
-`url` を設定しないと `build` を呼べないこと（`compile_fail` doctest で判定）。
+URL は `Option<String>` ではなく、**`HasUrl` 状態の中に持たせて**あります。
+そのため `build` の中で `unwrap` が要りません——「URLがある」ことを型で表した結果です。
+`url` を設定しないと `build` を呼べないことは、`compile_fail` doctest で確認しています。
 
-`NOTES.md` に、**この課題で typestate を使うのが適切と言える理由**を書いてください。
+任意で `NOTES.md` に、**この課題で typestate を使うのが適切と言える理由**を書いてください。
 もしこれが「設定ファイルから読み込んだ値でリクエストを組み立てる」課題だったら、設計はどう変わりますか？
 
 ## Challenge

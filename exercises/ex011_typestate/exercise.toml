@@ -2,4 +2,4 @@ id = "ex011_typestate"
 title = "typestateでビルダーの順序を強制する"
 lesson = "03-3"
 difficulty = 3
-concepts = ["typestate", "PhantomData", "compile_fail"]
+concepts = ["typestate", "compile_fail"]

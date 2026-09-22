@@ -1,0 +1,5 @@
+id = "ex030_lifetime_annotations"
+title = "lifetime注釈で参照どうしの関係を宣言する"
+lesson = "08-1"
+difficulty = 2
+concepts = ["lifetime annotations", "borrowing"]

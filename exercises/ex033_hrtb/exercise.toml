@@ -1,0 +1,5 @@
+id = "ex033_hrtb"
+title = "for<'a> と Fn(&str) の省略形"
+lesson = "08-4"
+difficulty = 2
+concepts = ["HRTB", "closures", "lifetime elision"]

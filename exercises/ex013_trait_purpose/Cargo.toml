@@ -1,0 +1,5 @@
+[package]
+name = "ex013_trait_purpose"
+version = "0.1.0"
+edition = "2021"
+publish = false

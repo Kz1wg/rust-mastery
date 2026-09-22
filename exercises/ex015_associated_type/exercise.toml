@@ -1,0 +1,5 @@
+id = "ex015_associated_type"
+title = "associated typeでStackを設計する"
+lesson = "04-3"
+difficulty = 2
+concepts = ["associated type", "trait design"]

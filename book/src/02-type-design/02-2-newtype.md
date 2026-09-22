@@ -146,13 +146,14 @@ fn main() {
 
 ## Exercise
 
-**`ex006_newtype`**（Phase 4 で提供）
+**`ex006_newtype`** — `cargo test -p ex006_newtype` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |
-| `Meters(f64)` と `Feet(f64)` | `fn add_meters(a: Meters, b: Meters) -> Meters`。`Feet` を渡すとコンパイルエラーになる（`compile_fail` doctest で判定） |
+| `add_meters` | `fn add_meters(a: Meters, b: Meters) -> Meters` を実装。`Feet` を渡すとコンパイルエラーになることは `compile_fail` doctest で確認済み |
 | `From<Feet> for Meters` | 単位変換を `From` で実装（1 ft = 0.3048 m） |
-| 「newtypeにしなかった」ケース | 課題の中に、あえて newtype にしなくてよい箇所を1つ含める。どれか、なぜかを `NOTES.md` に書く |
+
+`Meters` / `Feet` の型定義と `new` / `value` は用意してあります。
 
 ## Challenge
 

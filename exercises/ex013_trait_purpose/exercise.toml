@@ -1,0 +1,5 @@
+id = "ex013_trait_purpose"
+title = "traitを導入する正当な理由（複数実装＋共通の呼び出し側）"
+lesson = "04-1"
+difficulty = 2
+concepts = ["trait design", "dyn Trait"]

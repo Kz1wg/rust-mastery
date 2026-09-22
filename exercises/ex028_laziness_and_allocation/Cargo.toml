@@ -1,0 +1,5 @@
+[package]
+name = "ex028_laziness_and_allocation"
+version = "0.1.0"
+edition = "2021"
+publish = false

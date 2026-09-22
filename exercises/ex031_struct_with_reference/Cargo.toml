@@ -1,0 +1,5 @@
+[package]
+name = "ex031_struct_with_reference"
+version = "0.1.0"
+edition = "2021"
+publish = false

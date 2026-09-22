@@ -1,0 +1,5 @@
+[package]
+name = "ex024_error_propagation"
+version = "0.1.0"
+edition = "2021"
+publish = false

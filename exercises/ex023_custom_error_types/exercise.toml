@@ -1,0 +1,5 @@
+id = "ex023_custom_error_types"
+title = "Display/Errorを実装した独自Error型"
+lesson = "06-2"
+difficulty = 2
+concepts = ["custom error type", "Display", "std::error::Error"]

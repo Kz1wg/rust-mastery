@@ -1,0 +1,5 @@
+[package]
+name = "ex029_borrowing_iterators"
+version = "0.1.0"
+edition = "2021"
+publish = false

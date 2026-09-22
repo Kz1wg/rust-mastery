@@ -1,0 +1,5 @@
+id = "ex024_error_propagation"
+title = "?とFromでエラーを伝播する"
+lesson = "06-3"
+difficulty = 2
+concepts = ["? operator", "From", "error propagation"]

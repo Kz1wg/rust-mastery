@@ -1,0 +1,5 @@
+id = "ex029_borrowing_iterators"
+title = "2つのスライスから借用するイテレータ"
+lesson = "07-4"
+difficulty = 2
+concepts = ["lifetimes", "impl Iterator", "borrowing"]

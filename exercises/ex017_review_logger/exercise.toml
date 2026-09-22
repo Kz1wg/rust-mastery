@@ -1,0 +1,5 @@
+id = "ex017_review_logger"
+title = "不要なtraitを取り除く（レビュー演習）"
+lesson = "04-5"
+difficulty = 1
+concepts = ["trait design", "refactoring", "review"]

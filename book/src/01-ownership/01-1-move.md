@@ -138,7 +138,7 @@ impl Drop for Handle {
 
 ## Exercise
 
-**`ex001_move_semantics`**（骨組みとテストは Phase 4 で提供。ここでは仕様のみ示します）
+**`ex001_move_semantics`** — `cargo test -p ex001_move_semantics` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

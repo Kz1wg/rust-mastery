@@ -1,0 +1,5 @@
+id = "ex025_library_vs_application"
+title = "ライブラリのenum Errorとアプリケーション末端のBox<dyn Error>"
+lesson = "06-4"
+difficulty = 2
+concepts = ["library error design", "Box<dyn Error>"]

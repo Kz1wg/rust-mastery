@@ -6,7 +6,7 @@ Rustの文法を教える教材ではありません。
 「この状態は型で表現した方がいいか？」「このtraitは本当に必要か？」「このAPIは利用者に何を保証するか？」——
 そう考えられるようになることが目的です。
 
-> 開発状況: **Phase 4 進行中**。設計・mdBook・第1〜3章・全12演習（ex001〜ex012、Chapter 01〜03）を実装済みです。`check-exercises`（進捗確認CLI）と Chapter 04 以降はまだです。
+> 開発状況: 設計・mdBook・第1〜8章・全33演習（ex001〜ex033）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 09（Advanced Type System）以降はまだです。
 
 ## 対象者
 
@@ -53,7 +53,7 @@ python3 tools/check_error_codes.py   # どのディレクトリからでも実�
 ## 演習の実行
 
 ```bash
-cargo test -p ex001_move_semantics    # 1つの演習を判定（ex001〜ex011 が対象）
+cargo test -p ex001_move_semantics    # 1つの演習を判定（ex012 以外の全演習）
 ```
 
 `ex012_non_exhaustive` だけは、独立した2crate（`lib`/`app`）構成なので:
@@ -62,18 +62,29 @@ cargo test -p ex001_move_semantics    # 1つの演習を判定（ex001〜ex011 �
 cd exercises/ex012_non_exhaustive && cargo test
 ```
 
-`cargo test`（ルートで、`-p` なし）は使わないでください。未着手の演習は `todo!()` で
-失敗するのが正常な状態であり、ワークスペース全体のテストは常に失敗します
-（`check-exercises` を実装するまでの暫定挙動。詳細は `ARCHITECTURE.md` §2）。
+ルートで `-p` なしの `cargo test` を実行すると、`check-exercises` だけが対象になります
+（`default-members` の設定）。未着手の演習は `todo!()` で失敗するのが正常な状態なので、
+全演習をまとめて確認したいときは次の `check-exercises` を使ってください。
+
+## 進捗の確認
+
+```bash
+cargo run -p check-exercises                  # 全演習の進捗を表示（章ごと）
+cargo run -p check-exercises -- --lesson 02   # 章で絞り込む
+```
+
+`✅` 完了 / `❌ N failed` 一部失敗（着手済み） / `⬜ not started` 未着手（`todo!()`のまま）
+/ `⚠️ build error` コンパイルエラー、の4通りで表示します。
 
 ## 解答の検証（メンテナ向け）
 
 全演習の解答が正しく動くことを、骨組みへ一時的に上書きして確認できます
-（終了時に骨組みへ自動で復元されます）:
+（終了時に骨組みへ自動で復元されます）。2つの方法があります。
 
 ```bash
-./tools/verify_solutions.sh              # cargo test のみ
-./tools/verify_solutions.sh --fmt --clippy  # fmt / clippy も含める
+cargo run -p check-exercises -- --solutions   # test のみ。進捗表示と同じ枠組みで手軽に
+./tools/verify_solutions.sh                    # test のみ
+./tools/verify_solutions.sh --fmt --clippy     # fmt / clippy も含める（CIで使用）
 ```
 
 ## CI
@@ -103,10 +114,10 @@ cd exercises/ex012_non_exhaustive && cargo test
 
 ```text
 book/        mdBookプロジェクト（教材本文）
-exercises/   演習（骨組み + テスト）        ← Phase 4
-solutions/   模範解答                       ← Phase 4
-projects/    実践プロジェクト・Final Project ← Phase 7〜8
-tools/       check-exercises など           ← Phase 4
+exercises/   演習（骨組み + テスト）。exNNN_<name>/ ごとに1crate
+solutions/   模範解答（exercises/ と同じディレクトリ名で src/ のみ）
+projects/    実践プロジェクト・Final Project（Phase 7〜8、未着手）
+tools/       check-exercises（進捗CLI）、verify_solutions.sh、check_error_codes.py
 ```
 
 詳細は [ARCHITECTURE.md](ARCHITECTURE.md) を参照。

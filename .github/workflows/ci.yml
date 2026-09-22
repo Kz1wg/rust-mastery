@@ -37,10 +37,15 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
       # 骨組み（todo!()）はコンパイルは通り、実行時にpanicする。
-      # ここではコンパイルが通ること（構文・シグネチャの誤りがないこと）だけを確認する。
+      # ここではコンパイルが通ること（構文・シグネチャの誤りがないこと）と、
+      # 学習者が最初に開くコードが rustfmt 済みであることを確認する。
+      # （clippy は todo!() の未使用引数で失敗するため、骨組みには掛けない）
       - run: cargo build --workspace
-      - run: cd exercises/ex012_non_exhaustive && cargo build --workspace
+      - run: cargo fmt --all --check
+      - run: cd exercises/ex012_non_exhaustive && cargo build --workspace && cargo fmt --all --check
 
   solutions:
     name: 解答の検証（test + fmt + clippy）

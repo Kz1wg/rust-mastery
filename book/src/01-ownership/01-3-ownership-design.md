@@ -111,7 +111,7 @@ impl User {
     fn new(name: String) -> Self { Self { name } }
 
     // (2) &str を受けて内部で確保する
-    fn from_str(name: &str) -> Self { Self { name: name.to_string() } }
+    fn from_ref(name: &str) -> Self { Self { name: name.to_string() } }
 
     // (3) Into<String> を受ける
     fn with_into(name: impl Into<String>) -> Self { Self { name: name.into() } }
@@ -119,7 +119,7 @@ impl User {
 
 fn main() {
     let a = User::new(String::from("a"));      // (1) リテラルは to_string() が必要
-    let b = User::from_str("b");               // (2) String からだと余計なコピー
+    let b = User::from_ref("b");               // (2) String からだと余計なコピー
     let c = User::with_into("c");              // (3) どちらでも書ける
     let d = User::with_into(String::from("d"));
     let _ = (a, b, c, d);
@@ -137,18 +137,23 @@ fn main() {
 
 ## Exercise
 
-**`ex003_ownership_design`**（Phase 4 で提供）
+**`ex003_ownership_design`** — `cargo test -p ex003_ownership_design` で判定します。
 
-| 課題 | 仕様 |
-| --- | --- |
-| `fn count_words(text: ???) -> usize` | シグネチャを自分で決める。`&str` / `String` / `&String` 全ての呼び出し形式でテストが通ること |
-| `struct Config` と `Config::new(...)` | 名前の受け方を決め、呼び出しの例（リテラル・`String`）でコンパイルできること |
+この演習では、シグネチャはあらかじめ決めてあります（`cargo test` で自動判定するため）。
+実装する前に、**なぜこの受け方なのか**を本Lessonの表と照らし合わせて説明してください。
 
-シグネチャを決めた理由を、コメントで1〜2行書いてください。
+| 関数 | 用意してあるシグネチャ | テストが確認すること |
+| --- | --- | --- |
+| `count_words` | `fn count_words(text: &str) -> usize` | 文字列リテラル・`&String`・`as_str()` のどれからでも呼べる |
+| `Config::new` | `fn new(name: impl Into<String>) -> Self` | リテラルからも `String` からも構築できる |
+
+「シグネチャを自分で決める」体験は、下の Challenge で行ってください。
 
 ## Challenge
 
 `fn count_words(text: &str) -> usize` を、`&String` 版と比べて、呼び出せるパターンがどう違うか表にしてください。
+さらに、`count_words` を `String` で受ける版・`&String` で受ける版を自分で書いてテストを走らせ、
+どの呼び出しがコンパイルできなくなるかを確かめてください。
 
 ## Review
 

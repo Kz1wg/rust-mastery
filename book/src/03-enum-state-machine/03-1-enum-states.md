@@ -156,14 +156,16 @@ fn main() {
 
 ## Exercise
 
-**`ex009_enum_states`**（Phase 4 で提供）
+**`ex009_enum_states`** — `cargo test -p ex009_enum_states` で判定します。
+（`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |
 | --- | --- |
-| `Connection` | `struct { socket: Option<Socket>, error: Option<String>, retry_count: u32 }` を、状態が明確な `enum` に置き換える |
-| メソッド | `fn is_connected(&self) -> bool`, `fn retry_count(&self) -> u32` を実装 |
+| `Connection` | `enum Connection { Disconnected, Connected, Failed }`（各状態が `retry_count` を持ち、`Failed` は `error` も持つ）は用意済み |
+| メソッド | `connect` / `fail`（`retry_count` を1増やす）/ `is_connected` / `retry_count` を実装 |
 
-`NOTES.md` に、置き換え前に**表現できてしまっていた無効な状態**を2つ以上書いてください。
+任意で `NOTES.md` に、元の `struct { socket: Option<Socket>, error: Option<String>, retry_count: u32 }` が
+**表現できてしまっていた無効な状態**を2つ以上書いてください。
 
 ## Challenge
 

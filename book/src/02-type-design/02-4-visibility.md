@@ -148,12 +148,17 @@ fn main() {
 
 ## Exercise
 
-**`ex008_visibility`**（Phase 4 で提供）
+**`ex008_visibility`** — `cargo test -p ex008_visibility` で判定します。
+（`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |
 | --- | --- |
-| `Temperature` | 絶対零度（-273.15℃）未満を作れない型。`new` / `celsius()` / `set_celsius()` |
-| API 監査 | わざと不変条件を破れる `Inventory` 型が与えられる。破れる経路（`pub` フィールド、`&mut` getter など）をすべて見つけ、テストが通るよう修正する |
+| `Temperature` | 絶対零度（-273.15℃）未満を作れない型。`new` / `set_celsius` を実装（`celsius` は用意済み） |
+| `Inventory` | 常に `reserved <= quantity` を保つ在庫。フィールドは private にしてあり、`new` / `available` / `reserve` / `release` を、**失敗時に状態を変えない**形で実装する |
+
+外部から `Temperature` / `Inventory` を直接構築できないことは、`compile_fail` doctest で確認しています。
+実装が終わったら、`Inventory` のフィールドを `pub` にしたと仮定して、どのテストや doctest が
+意味を失うか考えてみてください。
 
 ## Challenge
 
