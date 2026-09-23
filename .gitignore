@@ -1,4 +1,4 @@
 /target
-/book/book
+# /book/book
 **/target
 .DS_Store
