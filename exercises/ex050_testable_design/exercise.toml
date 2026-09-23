@@ -1,0 +1,5 @@
+id = "ex050_testable_design"
+title = "時刻や乱数を外から受け取って、テストしやすくする"
+lesson = "13-1"
+difficulty = 1
+concepts = ["testability", "pure functions", "dependency injection"]

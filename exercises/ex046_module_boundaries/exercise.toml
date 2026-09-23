@@ -1,0 +1,5 @@
+id = "ex046_module_boundaries"
+title = "公開項目を最小にするモジュール分割"
+lesson = "12-1"
+difficulty = 2
+concepts = ["modules", "visibility", "invariants"]

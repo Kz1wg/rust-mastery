@@ -1,0 +1,5 @@
+id = "ex044_async_ownership"
+title = "awaitをまたぐ値とSendなFuture"
+lesson = "11-3"
+difficulty = 2
+concepts = ["Send", "await", "Arc", "compile_fail"]

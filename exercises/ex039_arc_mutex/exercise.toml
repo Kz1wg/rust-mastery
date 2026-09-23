@@ -1,0 +1,5 @@
+id = "ex039_arc_mutex"
+title = "Arc<Mutex<T>>とRwLockで共有可変状態を扱う"
+lesson = "10-2"
+difficulty = 3
+concepts = ["Arc", "Mutex", "RwLock"]

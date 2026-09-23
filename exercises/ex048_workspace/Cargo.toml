@@ -1,0 +1,5 @@
+# この演習は、lib と bin ではなく「依存の方向」を見るための入れ子 workspace。
+# ルートの workspace からは exclude されている（ルートの Cargo.toml を参照）。
+[workspace]
+resolver = "2"
+members = ["core", "storage"]

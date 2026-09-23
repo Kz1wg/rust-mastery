@@ -1,0 +1,5 @@
+[package]
+name = "ex051_kinds_of_tests"
+version = "0.1.0"
+edition = "2021"
+publish = false

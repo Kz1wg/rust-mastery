@@ -1,0 +1,6 @@
+# derive マクロ（describe_derive）と、それを使う側（describe_user）の入れ子 workspace。
+# procedural macro は専用の crate（proc-macro = true）に置く必要があるため、2つに分かれている。
+# ルートの workspace からは exclude されている。
+[workspace]
+resolver = "2"
+members = ["describe_derive", "describe_user"]

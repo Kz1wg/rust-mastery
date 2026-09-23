@@ -1,0 +1,10 @@
+[package]
+name = "ex048_core"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# ドメインのロジック。他の crate に依存しない。
+# ここに ex048_storage = { path = "../storage" } を足すと循環依存になり、
+# cargo がビルドを拒否する（Challenge で試すこと）。
+[dependencies]

@@ -1,0 +1,13 @@
+[package]
+name = "describe_derive"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# この crate は procedural macro 専用。コンパイラが先にビルドし、
+# describe_user のコンパイル途中で呼び出す。
+[lib]
+proc-macro = true
+
+# 実務では syn と quote を使うが、この教材では依存ゼロの方針で標準の proc_macro だけを使う。
+[dependencies]

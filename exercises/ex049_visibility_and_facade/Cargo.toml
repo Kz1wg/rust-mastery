@@ -1,0 +1,5 @@
+[package]
+name = "ex049_visibility_and_facade"
+version = "0.1.0"
+edition = "2021"
+publish = false

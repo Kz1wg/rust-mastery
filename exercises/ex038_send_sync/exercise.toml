@@ -1,0 +1,5 @@
+id = "ex038_send_sync"
+title = "SendとSyncを、スレッドに渡して確かめる"
+lesson = "10-1"
+difficulty = 2
+concepts = ["Send", "Sync", "thread::spawn", "compile_fail"]

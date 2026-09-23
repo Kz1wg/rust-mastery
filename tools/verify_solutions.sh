@@ -59,20 +59,25 @@ FAILED=0
 PASSED=0
 declare -a FAILED_NAMES=()
 
-# --- ex012_non_exhaustive（独立したnested workspace）を先に処理 ---
-NX_DIR="exercises/ex012_non_exhaustive"
-if [ -d "$NX_DIR" ]; then
-  echo "== ex012_non_exhaustive (nested workspace) =="
-  overlay "$NX_DIR/lib/src/lib.rs" "solutions/ex012_non_exhaustive/lib/src/lib.rs"
-  overlay "$NX_DIR/app/src/lib.rs" "solutions/ex012_non_exhaustive/app/src/lib.rs"
+# --- 入れ子 workspace（ex012, ex048 など。ディレクトリ内で cargo を動かす）---
+for dir in exercises/*/; do
+  name="$(basename "$dir")"
+  grep -q "^\[workspace\]" "${dir}Cargo.toml" 2>/dev/null || continue
+  [ -d "solutions/${name}" ] || { echo "== $name: solutions/ がありません（スキップ）=="; continue; }
+
+  echo "== $name (nested workspace) =="
+  while IFS= read -r sol; do
+    rel="${sol#solutions/${name}/}"
+    [ -f "${dir}${rel}" ] && overlay "${dir}${rel}" "$sol"
+  done < <(find "solutions/${name}" -name '*.rs')
 
   ok=1
-  ( cd "$NX_DIR" && cargo test --quiet ) || ok=0
+  ( cd "$dir" && cargo test --quiet ) || ok=0
   if [ "$RUN_FMT" -eq 1 ]; then
-    ( cd "$NX_DIR" && cargo fmt --all --check ) || ok=0
+    ( cd "$dir" && cargo fmt --all --check ) || ok=0
   fi
   if [ "$RUN_CLIPPY" -eq 1 ]; then
-    ( cd "$NX_DIR" && cargo clippy --workspace -- -D warnings ) || ok=0
+    ( cd "$dir" && cargo clippy --workspace -- -D warnings ) || ok=0
   fi
 
   if [ "$ok" -eq 1 ]; then
@@ -81,22 +86,25 @@ if [ -d "$NX_DIR" ]; then
   else
     echo "  NG"
     FAILED=$((FAILED + 1))
-    FAILED_NAMES+=("ex012_non_exhaustive")
+    FAILED_NAMES+=("$name")
   fi
-fi
+done
 
 # --- ルートworkspaceの演習（exercises/exNNN_.../src/lib.rs 1ファイルのみのもの）---
 for dir in exercises/*/; do
   name="$(basename "$dir")"
-  [ "$name" = "ex012_non_exhaustive" ] && continue
+  # 入れ子 workspace は上で処理済み
+  grep -q "^\[workspace\]" "${dir}Cargo.toml" 2>/dev/null && continue
 
-  exercise_lib="${dir}src/lib.rs"
-  solution_lib="solutions/${name}/src/lib.rs"
-  [ -f "$exercise_lib" ] || continue
-  [ -f "$solution_lib" ] || { echo "== $name: solutions/ がありません（スキップ）=="; continue; }
+  [ -f "${dir}src/lib.rs" ] || continue
+  [ -d "solutions/${name}" ] || { echo "== $name: solutions/ がありません（スキップ）=="; continue; }
 
   echo "== $name =="
-  overlay "$exercise_lib" "$solution_lib"
+  # 解答ディレクトリにある全ての .rs を、対応する演習ファイルへ重ねる
+  while IFS= read -r sol; do
+    rel="${sol#solutions/${name}/}"
+    [ -f "${dir}${rel}" ] && overlay "${dir}${rel}" "$sol"
+  done < <(find "solutions/${name}" -name '*.rs')
 
   ok=1
   cargo test --quiet -p "$name" || ok=0

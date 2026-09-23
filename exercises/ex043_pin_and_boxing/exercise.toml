@@ -1,0 +1,5 @@
+id = "ex043_pin_and_boxing"
+title = "Box::pinでFutureを持ち運ぶ"
+lesson = "11-2"
+difficulty = 2
+concepts = ["Pin", "Unpin", "Box<dyn Future>", "compile_fail"]

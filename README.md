@@ -6,7 +6,9 @@ Rustの文法を教える教材ではありません。
 「この状態は型で表現した方がいいか？」「このtraitは本当に必要か？」「このAPIは利用者に何を保証するか？」——
 そう考えられるようになることが目的です。
 
-> 開発状況: 設計・mdBook・第1〜9章・全37演習（ex001〜ex037）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 10（Concurrency）以降はまだです。
+> 開発状況: 設計・mdBook・第1〜14章・全55演習（ex001〜ex055）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 15（Unsafe Rust）以降はまだです。
+>
+> 演習crateの依存は**ゼロ**（標準ライブラリのみ）です。Chapter 11 の async も、最小ランタイムを自作して動かします。tokio は 11-4 で解説し、Chapter 17 の実践プロジェクトで実際に使う予定です。
 
 ## 対象者
 
@@ -56,10 +58,12 @@ python3 tools/check_error_codes.py   # どのディレクトリからでも実�
 cargo test -p ex001_move_semantics    # 1つの演習を判定（ex012 以外の全演習）
 ```
 
-`ex012_non_exhaustive` だけは、独立した2crate（`lib`/`app`）構成なので:
+`ex012_non_exhaustive`・`ex048_workspace`・`ex055_derive_macro` は入れ子の workspace なので、ディレクトリ内で実行します:
 
 ```bash
 cd exercises/ex012_non_exhaustive && cargo test
+cd exercises/ex048_workspace && cargo test
+cd exercises/ex055_derive_macro && cargo test
 ```
 
 ルートで `-p` なしの `cargo test` を実行すると、`check-exercises` だけが対象になります

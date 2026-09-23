@@ -5,7 +5,13 @@ members = ["exercises/*", "tools/check-exercises"]
 # workspace になっている（Lesson 03-4: 別crateの利用者から見た
 # #[non_exhaustive] の挙動を確認するため）。ルートの glob に
 # 巻き込まれないよう明示的に除外する。
-exclude = ["exercises/ex012_non_exhaustive"]
+# ex048_workspace も同様（Lesson 12-3: 依存の方向を crate 境界で強制する例）。
+# ex055_derive_macro も同様（Lesson 14-3: procedural macro は専用の crate が必要）。
+exclude = [
+    "exercises/ex012_non_exhaustive",
+    "exercises/ex048_workspace",
+    "exercises/ex055_derive_macro",
+]
 # ルートで `-p` なしの `cargo build` / `cargo test` を実行したとき、
 # 未着手の演習（todo!()で失敗するのが正常）を巻き込んで全滅させないよう、
 # 対象を check-exercises だけに絞る。演習は必ず `-p <name>` で指定するか、

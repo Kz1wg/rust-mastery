@@ -69,7 +69,25 @@ rust-mastery/
 │   ├── ex034_phantom_data/    # Chapter 09（4つ）
 │   ├── ex035_variance/
 │   ├── ex036_type_level_constraints/
-│   └── ex037_zero_cost/
+│   ├── ex037_zero_cost/
+│   ├── ex038_send_sync/       # Chapter 10（4つ）
+│   ├── ex039_arc_mutex/
+│   ├── ex040_interior_mutability/
+│   ├── ex041_message_passing/
+│   ├── ex042_future_basics/   # Chapter 11（4つ。各crateに src/runtime.rs を同梱）
+│   ├── ex043_pin_and_boxing/
+│   ├── ex044_async_ownership/
+│   ├── ex045_join2/
+│   ├── ex046_module_boundaries/ # Chapter 12（4つ）
+│   ├── ex047_lib_and_bin/     # lib.rs と main.rs の両方を持つ
+│   ├── ex048_workspace/       # core/storage の入れ子 workspace（下記）
+│   ├── ex049_visibility_and_facade/ # 複数モジュール構成
+│   ├── ex050_testable_design/ # Chapter 13（3つ）
+│   ├── ex051_kinds_of_tests/  # src 内に単体テストも持つ
+│   ├── ex052_testing_failures/
+│   ├── ex053_when_to_use_macros/ # Chapter 14（3つ）
+│   ├── ex054_macro_rules/
+│   └── ex055_derive_macro/    # proc-macro crate を含む入れ子 workspace
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
 │   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
 ├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
@@ -207,7 +225,7 @@ prerequisites = ["ex000_..."] # 省略可
 `check-exercises` はこのファイルを読んで一覧・進捗を表示する。
 メタデータを演習crateの外（本文）に持たせないのは、本文の書き換えで進捗管理が壊れないようにするため。
 
-> **実装状況（2026-09-22）**: ex001〜ex037（Chapter 01〜09）を実装済み。全37演習。
+> **実装状況（2026-09-22）**: ex001〜ex055（Chapter 01〜14）を実装済み。全55演習。依存crateはゼロを維持している（procedural macro も標準の `proc_macro` だけで作った）。
 > `check-exercises`（進捗確認CLI、下記）と `tools/verify_solutions.sh`（下記）の両方が使える。
 >
 > **確認方法についての注意**: `cargo fmt` / `cargo clippy` は、**全演習に解答を重ねた状態**
@@ -219,11 +237,14 @@ prerequisites = ["ex000_..."] # 省略可
 > （このリポジトリの検証環境には rustfmt / clippy が無かったため、apt の
 > `rustfmt` / `rust-clippy` パッケージを追加して確認した）。
 >
-> **`ex012_non_exhaustive` は独立したnested workspace**（`lib/` と `app/` の2crate）。
-> ルートの `Cargo.toml` の `exclude` で明示的に除外している。理由:
-> Lesson 03-4 の主題（`#[non_exhaustive]` が「別crateの利用者」に与える影響）を
-> 確認するには、本当に別crateである必要があるため。実行は
-> `cd exercises/ex012_non_exhaustive && cargo test`。
+> **入れ子 workspace が3つある**（`ex012_non_exhaustive`、`ex048_workspace`、`ex055_derive_macro`）。どちらもルートの
+> `Cargo.toml` の `exclude` で除外し、ディレクトリ内で `cargo test` する。
+> ex012 は Lesson 03-4（`#[non_exhaustive]` が別crateの利用者に与える影響）、
+> ex048 は Lesson 12-3（crate 境界で依存の方向を強制する）を、本物のcrate境界で確認するため。
+>
+> **解答の重ね方は「全ファイル」**: `solutions/<ID>/` 配下の `.rs` を再帰的に走査し、
+> `exercises/<ID>/` の同じ相対パスに存在するファイルへ重ねる。`check-exercises` と
+> `verify_solutions.sh` の両方がこの方式（Chapter 12 で複数ファイルの演習が出たため一般化した）。
 >
 > **`tools/verify_solutions.sh`**: `solutions/` の内容を対応する `exercises/`
 > の `src/lib.rs` に一時的に上書きし、`cargo test`（`--fmt` / `--clippy` で追加検証も）

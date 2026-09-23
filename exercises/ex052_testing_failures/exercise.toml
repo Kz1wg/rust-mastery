@@ -1,0 +1,5 @@
+id = "ex052_testing_failures"
+title = "Errの種類とpanicのメッセージまで確かめる"
+lesson = "13-3"
+difficulty = 2
+concepts = ["error testing", "should_panic", "boundary values"]

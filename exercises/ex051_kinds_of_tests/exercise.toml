@@ -1,0 +1,5 @@
+id = "ex051_kinds_of_tests"
+title = "単体・統合・ドキュメントテストを見分ける"
+lesson = "13-2"
+difficulty = 1
+concepts = ["unit tests", "integration tests", "doctests"]

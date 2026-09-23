@@ -1,0 +1,9 @@
+[package]
+name = "ex048_storage"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# 依存の向きは storage -> core の一方向。逆向きは存在しない。
+[dependencies]
+ex048_core = { path = "../core" }

@@ -1,0 +1,5 @@
+id = "ex048_workspace"
+title = "crate境界で依存の方向を強制する"
+lesson = "12-3"
+difficulty = 2
+concepts = ["workspace", "dependency direction", "crate boundaries"]

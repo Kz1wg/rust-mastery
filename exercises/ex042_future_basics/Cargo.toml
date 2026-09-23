@@ -1,0 +1,5 @@
+[package]
+name = "ex042_future_basics"
+version = "0.1.0"
+edition = "2021"
+publish = false

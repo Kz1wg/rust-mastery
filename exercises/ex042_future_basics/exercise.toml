@@ -1,0 +1,5 @@
+id = "ex042_future_basics"
+title = "Futureを自分で実装し、最小ランタイムで動かす"
+lesson = "11-1"
+difficulty = 3
+concepts = ["Future", "poll", "Waker"]

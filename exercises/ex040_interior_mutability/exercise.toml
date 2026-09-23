@@ -1,0 +1,5 @@
+id = "ex040_interior_mutability"
+title = "CellとRefCellで&selfのまま状態を変える"
+lesson = "10-3"
+difficulty = 2
+concepts = ["Cell", "RefCell", "try_borrow_mut"]

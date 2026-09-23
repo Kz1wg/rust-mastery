@@ -1,9 +1,9 @@
 # 演習インデックス
 
-全37演習（ex001〜ex037）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
+全55演習（ex001〜ex055）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
 全て実装済み（骨組み・テスト・`exercise.toml`・`solutions/`）。
 
-判定は `cargo test -p <ID>`（ex012 のみ `cd exercises/ex012_non_exhaustive && cargo test`）。
+判定は `cargo test -p <ID>`（入れ子 workspace の ex012・ex048・ex055 のみ、ディレクトリ内で `cargo test`）。
 全体の進捗は `cargo run -p check-exercises`。
 
 | ID | Lesson | 題材 | 判定方法 |
@@ -45,8 +45,30 @@
 | ex035_variance | 09-2 | `pick_longer`（共変）/ `push_word`（不変）/ `collect_short_words` | 通常テスト＋ `compile_fail` doctest |
 | ex036_type_level_constraints | 09-3 | `Vector<const N>`、sealed trait `Unit` | 通常テスト＋ `compile_fail` doctest ×2（doctest は別crateとして実行されるので封印を確認できる） |
 | ex037_zero_cost | 09-4 | iterator版とloop版、`#[repr(transparent)]` の `UserId` | 通常テスト（`size_of` でレイアウトも確認） |
+| ex038_send_sync | 10-1 | `spawn_sum`、`assert_send`/`assert_sync` | 通常テスト＋ `compile_fail` doctest（`Rc` は渡せない） |
+| ex039_arc_mutex | 10-2 | `parallel_increment`（Mutex）、`total_length_times_three`（RwLock） | 通常テスト |
+| ex040_interior_mutability | 10-3 | `Counter`（Cell）、`Logger`（RefCell、`try_borrow_mut`） | 通常テスト |
+| ex041_message_passing | 10-4 | `sum_with_join`、`sum_with_channel`、閉じたチャネルへの送信 | 通常テスト |
+| ex042_future_basics | 11-1 | `Countdown`（`Future` 実装）、`block_on`、poll回数 | 通常テスト |
+| ex043_pin_and_boxing | 11-2 | `run_boxed`、`make_boxed_future` | 通常テスト＋ `compile_fail` doctest |
+| ex044_async_ownership | 11-3 | `sum_shared`（`Arc`）、`assert_send_future` | 通常テスト＋ `compile_fail` doctest |
+| ex045_join2 | 11-4 | `Join2::poll`（スレッドなしの並行実行） | 通常テスト（ログ順で交互実行を確認） |
+| ex046_module_boundaries | 12-1 | `order` モジュール（公開項目を最小に） | 通常テスト＋ `compile_fail` doctest ×2 |
+| ex047_lib_and_bin | 12-2 | `count_words` / `run` と薄い `main.rs` | 通常テスト（lib の公開APIのみ） |
+| ex048_workspace | 12-3 | `ex048_core` / `ex048_storage`（依存は一方向） | 入れ子 workspace。ディレクトリ内で `cargo test` |
+| ex049_visibility_and_facade | 12-4 | `pub use` による facade、`pub(crate)` ヘルパー | 通常テスト＋ `compile_fail` doctest ×2 |
+| ex050_testable_design | 13-1 | `greeting_for_hour`、`is_business_hours`、`pick_with`（選び方を注入） | 通常テスト |
+| ex051_kinds_of_tests | 13-2 | `word_frequency` と private な `normalize` | 単体テスト＋統合テスト＋ドキュメントテスト（3種類すべて） |
+| ex052_testing_failures | 13-3 | `parse_age`（Errの種類）、`get_item`（panicのメッセージ） | 通常テスト（`should_panic(expected = ...)` を含む） |
+| ex053_when_to_use_macros | 14-1 | `square`（関数で書く）、`max_of!`（可変長） | 通常テスト＋ドキュメントテスト（引数が1回だけ評価されること） |
+| ex054_macro_rules | 14-2 | `hashmap!`（繰り返し）、`impl_unit!`（項目の生成） | 通常テスト＋ドキュメントテスト |
+| ex055_derive_macro | 14-3 | `#[derive(Describe)]`（依存ゼロ、標準の `proc_macro` のみ） | 入れ子 workspace。ディレクトリ内で `cargo test` |
 
 ## 演習の設計方針
+
+- **解答は複数ファイルでもよい。** `solutions/<ID>/` 配下の `.rs` は、対応する `exercises/<ID>/` の同じ相対パスへ
+  まとめて重ねられる（ex047 の `main.rs`、ex049 の `config.rs`/`parser.rs`、入れ子 workspace の各crate）。
+- **依存crateはゼロ**（標準ライブラリのみ）。Chapter 11 の async 演習も、各crateに最小ランタイム（`src/runtime.rs`、約40行）を同梱して動かす。
 
 - 型定義と公開APIのシグネチャは骨組みに固定し、本体だけを `todo!()` にする（`cargo test` で自動判定するため）。
   「型を自分で書き換える」体験は、各 Lesson の Think / Solution / Challenge で担保する。
@@ -56,9 +78,20 @@
 
 ## 演習を作るときのチェックリスト（過去に実際に踏んだ罠）
 
+- **`todo!()` のメッセージに、テストが期待する文字列を書かない。** `todo!()` も panic なので、
+  メッセージに `#[should_panic(expected = "...")]` の文字列が含まれていると、**未実装のままテストが通る**。
+  ex052 で「index out of range」を `todo!()` の説明文に書いてしまい、骨組みの確認中に気づいた。
 - **`todo!()` のメッセージに波かっこを書かない。** `{}` や `{var}` は `format!` の引数として解釈され、
   コンパイルエラーになる（ex007・ex009・ex010・ex011・ex013・ex024 で発生）。
   具体例を示したいときは「例: "..." のような形式」と、波かっこを含めない言い方にする。
+- **マクロの骨組みでは、`todo!()` の型が決まらないことがある。** マクロの展開先で `!` 型のまま比較されると
+  コンパイルできない（ex053）。`if false { a } else { todo!(...) }` のように、既にある値と型を揃える形にする。
+  値を生成するマクロ（ex054 の `hashmap!`）は、テスト側で戻り値の型を明示しておくと、未実装でも型が決まる。
+  procedural macro（ex055）は、`todo!()` を**生成するコードの中**に置けば、骨組みでもコンパイルが通る。
+- **`todo!()` だけでは戻り値の型が決まらない場面が、`impl Trait` 以外にもある。** スレッドのクロージャ
+  （`thread::spawn(move || todo!())` は `()` を返すと推論され、`sum()` が失敗）や、送信するまで型が決まらない
+  `mpsc::Sender`（E0283）など。型注釈付きのローカル変数（`let total: usize = todo!(...); total`）を骨組みに残すか、
+  型が決まる呼び出し（`tx.send(partial)`）を骨組み側に置く。
 - **`-> impl Trait` を返す関数の本体を、まるごと `todo!()` にしない。** opaque type の推論は本体の
   具体的な式から行われるため、`error[E0277]: () is not an iterator` になる（ex020）。外側の式は骨組みに残し、
   `todo!()` はクロージャの中など内側の式に埋め込む。最終式が `.chain(...)` のようにクロージャを持たない場合は、

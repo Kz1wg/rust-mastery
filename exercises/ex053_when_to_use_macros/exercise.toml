@@ -1,0 +1,5 @@
+id = "ex053_when_to_use_macros"
+title = "関数で書けるものは関数で、書けないものだけマクロで"
+lesson = "14-1"
+difficulty = 2
+concepts = ["macro_rules", "variadic", "double evaluation"]

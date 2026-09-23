@@ -1,0 +1,5 @@
+id = "ex049_visibility_and_facade"
+title = "pub useで内部構成を隠す（facade）"
+lesson = "12-4"
+difficulty = 2
+concepts = ["pub use", "pub(crate)", "facade", "compile_fail"]

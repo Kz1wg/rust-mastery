@@ -1,0 +1,5 @@
+id = "ex054_macro_rules"
+title = "繰り返しと項目の生成をするmacro_rules"
+lesson = "14-2"
+difficulty = 3
+concepts = ["macro_rules", "repetition", "macro_export", "$crate"]

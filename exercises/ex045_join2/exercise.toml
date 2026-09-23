@@ -1,0 +1,5 @@
+id = "ex045_join2"
+title = "join2でスレッドを使わずに並行実行する"
+lesson = "11-4"
+difficulty = 3
+concepts = ["concurrency", "Future combinator", "Pin<Box<F>>"]

@@ -1,0 +1,5 @@
+id = "ex047_lib_and_bin"
+title = "ロジックをlibに置き、mainを薄く保つ"
+lesson = "12-2"
+difficulty = 2
+concepts = ["lib and bin", "testability", "error handling"]

@@ -1,0 +1,5 @@
+id = "ex041_message_passing"
+title = "共有せずに結果を集める（joinとmpsc）"
+lesson = "10-4"
+difficulty = 2
+concepts = ["mpsc", "JoinHandle", "ownership transfer"]

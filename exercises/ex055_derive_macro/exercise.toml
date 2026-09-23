@@ -1,0 +1,5 @@
+id = "ex055_derive_macro"
+title = "依存ゼロでderiveマクロを作る"
+lesson = "14-3"
+difficulty = 3
+concepts = ["procedural macro", "derive", "TokenStream"]

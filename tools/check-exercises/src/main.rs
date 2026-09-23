@@ -177,13 +177,6 @@ fn is_nested_workspace(ex_dir: &Path) -> bool {
         .unwrap_or(false)
 }
 
-fn nested_workspace_members(ex_dir: &Path) -> Vec<String> {
-    let Ok(content) = fs::read_to_string(ex_dir.join("Cargo.toml")) else {
-        return Vec::new();
-    };
-    toml_get_string_array(&content, "members")
-}
-
 /// `key = "value"` という行から文字列値を取り出す最小パーサー。
 /// TOML全般には対応しない（このプロジェクトが書くexercise.toml / Cargo.toml専用）。
 fn toml_get_string(content: &str, key: &str) -> Option<String> {
@@ -202,38 +195,6 @@ fn toml_get_string(content: &str, key: &str) -> Option<String> {
         }
     }
     None
-}
-
-/// `key = ["a", "b"]` という行から文字列配列を取り出す最小パーサー（1行に収まる前提）。
-fn toml_get_string_array(content: &str, key: &str) -> Vec<String> {
-    for line in content.lines() {
-        let line = line.trim();
-        let Some(rest) = line.strip_prefix(key) else {
-            continue;
-        };
-        let rest = rest.trim_start();
-        let Some(rest) = rest.strip_prefix('=') else {
-            continue;
-        };
-        let rest = rest.trim();
-        let Some(inner) = rest.strip_prefix('[').and_then(|s| s.strip_suffix(']')) else {
-            continue;
-        };
-        return inner
-            .split(',')
-            .filter_map(|part| {
-                let part = part.trim();
-                let part = part.strip_prefix('"')?;
-                let part = part.strip_suffix('"')?;
-                if part.is_empty() {
-                    None
-                } else {
-                    Some(part.to_string())
-                }
-            })
-            .collect();
-    }
-    Vec::new()
 }
 
 fn run_tests(root: &Path, ex: &ExerciseMeta) -> Category {
@@ -380,35 +341,42 @@ impl Drop for OverlayGuard {
 }
 
 /// (演習側のファイル, 対応する解答側のファイル) のペアを、両方のファイルが
-/// 実際に存在するものだけ集める。通常の演習は1組、nested workspace（ex012）は
-/// メンバーcrateの数だけ組が返る。
+/// 実際に存在するものだけ集める。解答ディレクトリ配下の `.rs` を再帰的に走査するので、
+/// lib.rs 1つの演習も、複数モジュール（ex049）や入れ子 workspace（ex012, ex048）も同じ扱いになる。
 fn overlay_pairs(root: &Path, ex: &ExerciseMeta) -> Vec<(PathBuf, PathBuf)> {
+    let solution_dir = root.join("solutions").join(&ex.id);
     let mut pairs = Vec::new();
-    if is_nested_workspace(&ex.dir) {
-        for member in nested_workspace_members(&ex.dir) {
-            let ex_file = ex.dir.join(&member).join("src").join("lib.rs");
-            let sol_file = root
-                .join("solutions")
-                .join(&ex.id)
-                .join(&member)
-                .join("src")
-                .join("lib.rs");
-            if ex_file.exists() && sol_file.exists() {
-                pairs.push((ex_file, sol_file));
-            }
-        }
-    } else {
-        let ex_file = ex.dir.join("src").join("lib.rs");
-        let sol_file = root
-            .join("solutions")
-            .join(&ex.id)
-            .join("src")
-            .join("lib.rs");
-        if ex_file.exists() && sol_file.exists() {
-            pairs.push((ex_file, sol_file));
+    for sol in rust_files(&solution_dir) {
+        let Ok(rel) = sol.strip_prefix(&solution_dir) else {
+            continue;
+        };
+        let target = ex.dir.join(rel);
+        if target.exists() {
+            pairs.push((target, sol.clone()));
         }
     }
+    pairs.sort();
     pairs
+}
+
+/// ディレクトリ配下の `.rs` ファイルを再帰的に集める（target/ は除く）。
+fn rust_files(dir: &Path) -> Vec<PathBuf> {
+    let mut out = Vec::new();
+    let Ok(entries) = fs::read_dir(dir) else {
+        return out;
+    };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            if path.file_name().and_then(|n| n.to_str()) == Some("target") {
+                continue;
+            }
+            out.extend(rust_files(&path));
+        } else if path.extension().and_then(|e| e.to_str()) == Some("rs") {
+            out.push(path);
+        }
+    }
+    out
 }
 
 fn run_solutions_mode(root: &Path, exercises: &[ExerciseMeta]) {

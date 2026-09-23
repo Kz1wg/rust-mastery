@@ -45,7 +45,10 @@ jobs:
       # （clippy は todo!() の未使用引数で失敗するため、骨組みには掛けない）
       - run: cargo build --workspace
       - run: cargo fmt --all --check
+      # 入れ子 workspace（ルートから exclude されている）も個別に確認する
       - run: cd exercises/ex012_non_exhaustive && cargo build --workspace && cargo fmt --all --check
+      - run: cd exercises/ex048_workspace && cargo build --workspace && cargo fmt --all --check
+      - run: cd exercises/ex055_derive_macro && cargo build --workspace && cargo fmt --all --check
 
   solutions:
     name: 解答の検証（test + fmt + clippy）
