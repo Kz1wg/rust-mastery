@@ -89,8 +89,14 @@
   - [14-1 マクロが必要な瞬間](14-macros/14-1-when-macros.md)
   - [14-2 declarative macro](14-macros/14-2-macro-rules.md)
   - [14-3 procedural macro 入門](14-macros/14-3-proc-macros.md)
-- [15 Unsafe Rust]()
-- [16 Library Design]()
+- [15 Unsafe Rust](15-unsafe/index.md)
+  - [15-1 unsafe は何を宣言しているのか](15-unsafe/15-1-what-unsafe-means.md)
+  - [15-2 safe abstraction を作る](15-unsafe/15-2-safe-abstraction.md)
+  - [15-3 FFI](15-unsafe/15-3-ffi.md)
+- [16 Library Design](16-library-design/index.md)
+  - [16-1 公開APIのレビュー](16-library-design/16-1-api-review.md)
+  - [16-2 semver と拡張性](16-library-design/16-2-semver.md)
+  - [16-3 ドキュメントと例](16-library-design/16-3-documentation.md)
 
 # 総合
 

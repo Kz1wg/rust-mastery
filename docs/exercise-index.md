@@ -1,6 +1,6 @@
 # 演習インデックス
 
-全55演習（ex001〜ex055）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
+全61演習（ex001〜ex061）の一覧。仕様の詳細は各 Lesson の Exercise 節を参照。
 全て実装済み（骨組み・テスト・`exercise.toml`・`solutions/`）。
 
 判定は `cargo test -p <ID>`（入れ子 workspace の ex012・ex048・ex055 のみ、ディレクトリ内で `cargo test`）。
@@ -63,6 +63,12 @@
 | ex053_when_to_use_macros | 14-1 | `square`（関数で書く）、`max_of!`（可変長） | 通常テスト＋ドキュメントテスト（引数が1回だけ評価されること） |
 | ex054_macro_rules | 14-2 | `hashmap!`（繰り返し）、`impl_unit!`（項目の生成） | 通常テスト＋ドキュメントテスト |
 | ex055_derive_macro | 14-3 | `#[derive(Describe)]`（依存ゼロ、標準の `proc_macro` のみ） | 入れ子 workspace。ディレクトリ内で `cargo test` |
+| ex056_unsafe_basics | 15-1 | `first_via_ptr`、`read_value`（`unsafe fn`）、`swap_values`（unsafe 不要の引っかけ） | 通常テスト＋ `compile_fail` doctest |
+| ex057_safe_abstraction | 15-2 | `my_split_at_mut`、`first_and_last_mut` | 通常テスト（範囲外は panic で止まること） |
+| ex058_ffi | 15-3 | `c_abs`（`i32::MIN` を弾く）、`c_strlen`、`rust_add`、`from_c_str` | 通常テスト（C の標準ライブラリを依存なしで呼ぶ） |
+| ex059_api_review | 16-1 | `analyze`（`Unit` enum、`Options` ビルダー、`Count` 構造体） | 通常テスト |
+| ex060_semver_friendly | 16-2 | `Config`・`Level`（`#[non_exhaustive]`）、`Store`（デフォルト実装） | 通常テスト＋ `compile_fail` doctest ×2 |
+| ex061_documentation | 16-3 | `parse_duration`（`#![deny(missing_docs)]`） | **ドキュメントのコード例が主なテスト**＋補足の統合テスト |
 
 ## 演習の設計方針
 

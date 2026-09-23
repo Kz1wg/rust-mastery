@@ -1,0 +1,5 @@
+[package]
+name = "ex060_semver_friendly"
+version = "0.1.0"
+edition = "2021"
+publish = false

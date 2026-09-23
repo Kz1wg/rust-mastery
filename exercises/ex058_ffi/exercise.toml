@@ -1,0 +1,5 @@
+id = "ex058_ffi"
+title = "Cの標準ライブラリを安全に包む（FFI）"
+lesson = "15-3"
+difficulty = 3
+concepts = ["FFI", "CString", "CStr", "extern C", "no_mangle"]

@@ -1,0 +1,5 @@
+id = "ex060_semver_friendly"
+title = "後から拡張しても利用者を壊さないAPI"
+lesson = "16-2"
+difficulty = 2
+concepts = ["semver", "non_exhaustive", "default methods", "compile_fail"]

@@ -1,0 +1,5 @@
+id = "ex056_unsafe_basics"
+title = "unsafeが必要な操作と、SAFETYコメント"
+lesson = "15-1"
+difficulty = 2
+concepts = ["raw pointers", "unsafe fn", "SAFETY comments"]

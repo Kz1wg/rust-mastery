@@ -1,0 +1,5 @@
+[package]
+name = "ex057_safe_abstraction"
+version = "0.1.0"
+edition = "2021"
+publish = false

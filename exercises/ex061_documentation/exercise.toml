@@ -1,0 +1,5 @@
+id = "ex061_documentation"
+title = "ドキュメントのコード例を仕様書にする"
+lesson = "16-3"
+difficulty = 2
+concepts = ["documentation", "doctests", "missing_docs", "error design"]

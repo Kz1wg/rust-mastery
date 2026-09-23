@@ -87,7 +87,13 @@ rust-mastery/
 │   ├── ex052_testing_failures/
 │   ├── ex053_when_to_use_macros/ # Chapter 14（3つ）
 │   ├── ex054_macro_rules/
-│   └── ex055_derive_macro/    # proc-macro crate を含む入れ子 workspace
+│   ├── ex055_derive_macro/    # proc-macro crate を含む入れ子 workspace
+│   ├── ex056_unsafe_basics/   # Chapter 15（3つ）
+│   ├── ex057_safe_abstraction/
+│   ├── ex058_ffi/             # C の標準ライブラリ（abs, strlen）を依存なしで呼ぶ
+│   ├── ex059_api_review/      # Chapter 16（3つ）
+│   ├── ex060_semver_friendly/
+│   └── ex061_documentation/   # doctest が主なテスト、#![deny(missing_docs)]
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
 │   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
 ├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
@@ -225,7 +231,7 @@ prerequisites = ["ex000_..."] # 省略可
 `check-exercises` はこのファイルを読んで一覧・進捗を表示する。
 メタデータを演習crateの外（本文）に持たせないのは、本文の書き換えで進捗管理が壊れないようにするため。
 
-> **実装状況（2026-09-22）**: ex001〜ex055（Chapter 01〜14）を実装済み。全55演習。依存crateはゼロを維持している（procedural macro も標準の `proc_macro` だけで作った）。
+> **実装状況（2026-09-22）**: ex001〜ex061（Chapter 01〜16、本文の全章）を実装済み。全61演習。依存crateはゼロを維持している（procedural macro も標準の `proc_macro` だけで作った）。
 > `check-exercises`（進捗確認CLI、下記）と `tools/verify_solutions.sh`（下記）の両方が使える。
 >
 > **確認方法についての注意**: `cargo fmt` / `cargo clippy` は、**全演習に解答を重ねた状態**

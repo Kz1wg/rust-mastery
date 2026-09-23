@@ -1,0 +1,5 @@
+id = "ex057_safe_abstraction"
+title = "unsafeを内側に閉じ込めたsafeなAPI"
+lesson = "15-2"
+difficulty = 3
+concepts = ["safe abstraction", "from_raw_parts_mut", "assert"]

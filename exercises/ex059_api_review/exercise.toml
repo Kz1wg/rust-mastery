@@ -1,0 +1,5 @@
+id = "ex059_api_review"
+title = "利用者の立場で見直したAPIを実装する"
+lesson = "16-1"
+difficulty = 2
+concepts = ["API design", "builder", "enum instead of strings"]
