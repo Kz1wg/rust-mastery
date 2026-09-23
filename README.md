@@ -33,24 +33,7 @@ Rustの文法を教える教材ではありません。
 | ツール | 推奨・要件 | 動作確認済み |
 | --- | --- | --- |
 | Rust | 1.85 以上を推奨（edition 2024 が使える最小バージョン）。現時点の教材コードは edition 2021 | 1.98.1 / 1.75.0 |
-| mdBook | 0.4系・0.5系のどちらでも動作 | 0.5.4 / 0.4.40 |
 
-（動作確認の内容: `mdbook test` と `python3 tools/check_error_codes.py` が第1〜3章で通ること）
-
-## mdBookの起動
-
-```bash
-cd book
-mdbook serve --open     # http://localhost:3000
-mdbook build            # 静的HTMLを book/book/ に出力
-mdbook test             # 本文中のRustコードを検証
-```
-
-`compile_fail,EXXXX` のエラーコード一致は `mdbook test` では検証されないため、別途:
-
-```bash
-python3 tools/check_error_codes.py   # どのディレクトリからでも実行可
-```
 
 ## 演習の実行
 
