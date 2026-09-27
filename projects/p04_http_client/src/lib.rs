@@ -128,12 +128,14 @@ impl Transport for StdTransport {
         };
 
         let mut stream = TcpStream::connect(host).map_err(err)?;
-        write!(
-            stream,
+        // リクエストは1つの文字列に組み立ててから、write_all で一度に送る。
+        // write!(stream, ...) だと、書式の部品ごとに別々に送られることがあり、
+        // 受け取る側が途中までしか読まないうちに次の処理へ進んでしまう（テストが不安定になる）。
+        let head = format!(
             "{} {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n",
             request.method, path, host
-        )
-        .map_err(err)?;
+        );
+        stream.write_all(head.as_bytes()).map_err(err)?;
 
         let mut reader = BufReader::new(stream);
         let mut status_line = String::new();

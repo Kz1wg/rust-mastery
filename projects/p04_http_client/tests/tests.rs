@@ -120,9 +120,18 @@ fn real_transport_against_a_local_server() {
     let addr = listener.local_addr().unwrap();
     let server = std::thread::spawn(move || {
         let (mut conn, _) = listener.accept().unwrap();
+        // リクエストは何回かに分かれて届くことがあるので、終わり（空行）まで読む。
+        // 読み残したまま接続を閉じると、相手には接続のリセットとして伝わり、応答を受け取れないことがある
+        let mut request = Vec::new();
         let mut buf = [0u8; 1024];
-        let n = conn.read(&mut buf).unwrap();
-        let request = String::from_utf8_lossy(&buf[..n]).to_string();
+        while !request.windows(4).any(|w| w == b"\r\n\r\n") {
+            let n = conn.read(&mut buf).unwrap();
+            if n == 0 {
+                break;
+            }
+            request.extend_from_slice(&buf[..n]);
+        }
+        let request = String::from_utf8_lossy(&request).to_string();
         conn.write_all(b"HTTP/1.1 200 OK\r\nContent-Length: 5\r\n\r\nhello")
             .unwrap();
         request
