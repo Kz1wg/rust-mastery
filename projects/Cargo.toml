@@ -1,0 +1,12 @@
+# 実践プロジェクト（Chapter 17）の workspace。
+#
+# ルートの workspace（exercises/*）とは独立している。理由:
+# - exercises/ は「依存crateゼロ」を守る方針だが、実践プロジェクトでは
+#   実務と同じく依存crateを使う場面がある（P6 の tokio など）
+# - 依存を持ち込む範囲を、このディレクトリの中に限定するため
+#
+# 実行はこのディレクトリの中で:  cd projects && cargo test -p p01_wordstat
+[workspace]
+resolver = "2"
+members = ["p*", "final_*"]
+exclude = ["solutions"]

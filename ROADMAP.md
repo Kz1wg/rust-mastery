@@ -177,8 +177,8 @@ ID は `NN-M`（章-Lesson）。演習crate名は `exNNN_<name>`。
 | P3 | ログ解析ツール | Iterator、抽象化のやりすぎ問題 |
 | P4 | HTTP client | trait設計、テスト容易性 |
 | P5 | キャッシュシステム | interior mutability、Send/Sync |
-| P6 | 非同期データ取得 | async、所有権 |
-| P7 | Rust library | Library Design の総合 |
+| P6 | 非同期データ取得（`p06_fetch_all`） | tokio、spawn と `Send + 'static`、Semaphore による同時実行数の制限、timeout と drop による中断 |
+| P7 | Rust library（`p07_iniconf`） | Library Design の総合。内部表現を隠す、借用するビュー型、`#[non_exhaustive]`、facade、doctest |
 
 ### 18 Final Project
 中規模アプリをゼロから設計する。**コードよりも設計プロセス**を評価する。
@@ -189,6 +189,14 @@ Requirements → Domain Model → Type Design → Trait Design
 ```
 
 各段階で設計ドキュメント（1ページ）を書き、AIにレビューさせ、指摘への対応を記録する。
+
+| ページ | 内容 |
+| --- | --- |
+| 18-1〜18-6 | Requirements / Domain Model / Type / Trait / Error / Module Design。各ページに「例題の設計メモ」（折りたたみ）とAIレビューのプロンプト |
+| 18-7 | Implementation & Testing（要件ごとにテスト。参考実装はここで公開） |
+| 18-8 | Refactoring（変更要求「職員は10冊・30日」。構造の整理と機能追加を分ける。保存形式 v1→v2 の移行） |
+
+例題は「図書室の貸出管理」CLI（`projects/final_lending/`、依存ゼロ）。設計メモのテンプレートは `docs/final-project-template.md`。
 
 ### Appendix
 | ID | 内容 |

@@ -50,6 +50,20 @@ jobs:
       - run: cd exercises/ex048_workspace && cargo build --workspace && cargo fmt --all --check
       - run: cd exercises/ex055_derive_macro && cargo build --workspace && cargo fmt --all --check
 
+  projects:
+    name: 実践プロジェクト（projects/ workspace）
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      # 骨組みがビルドでき、rustfmt 済みであること
+      - run: cd projects && cargo build --workspace && cargo fmt --all --check
+      # 解答を重ねて test / fmt / clippy
+      - run: chmod +x tools/verify_projects.sh
+      - run: ./tools/verify_projects.sh --fmt --clippy
+
   solutions:
     name: 解答の検証（test + fmt + clippy）
     runs-on: ubuntu-latest

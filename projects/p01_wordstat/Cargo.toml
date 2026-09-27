@@ -1,0 +1,8 @@
+[package]
+name = "p01_wordstat"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# 依存crateなし。実務なら引数の解析に clap を使うことが多い（本文を参照）。
+[dependencies]

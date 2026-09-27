@@ -131,8 +131,8 @@ tokio が提供しているのは、この章で自作しなかった部分で�
 | 機能 | この章の `block_on` | tokio |
 | --- | --- | --- |
 | `Future` を完了まで実行 | ○ | `block_on` / `#[tokio::main]` |
-| 複数タスクの管理 | ×（1つだけ） | `tokio::spawn`、work-stealing スケジューラ |
-| OSのI/O通知（epoll など）との連携 | × | reactor が `Waker` と結びつける |
+| 複数タスクの管理 | ×（1つだけ） | `tokio::spawn`。複数のスレッドに仕事を振り分け、手の空いたスレッドが他の仕事を引き取る（work-stealing） |
+| OSのI/O通知（epoll など）との連携 | × | 「データが届いた」などのOSからの通知を受け取り、対応する `Waker` を鳴らす仕組み（reactor）を持つ |
 | 非同期のネットワーク・ファイル・タイマー | × | `tokio::net` / `fs` / `time` |
 | 非同期対応の同期プリミティブ | × | `tokio::sync::{Mutex, mpsc, oneshot}` |
 

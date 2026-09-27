@@ -109,6 +109,15 @@ fn main() {
 }
 ```
 
+表に出てくる言葉を先に説明しておきます。
+
+- **静的ディスパッチ**: どの関数を呼ぶかが**コンパイル時に決まる**呼び方。generic はこちら。
+  コンパイラは、使われた型ごとに関数のコピーを作ります（`total_area_generic::<Circle>` と `total_area_generic::<Square>` が別々に作られる）。
+  これを**単相化**（monomorphization）と言います。
+- **動的ディスパッチ**: どの関数を呼ぶかが**実行時に決まる**呼び方。`dyn Trait` はこちら。
+  `Box<dyn Shape>` は、中身のデータへのポインタと一緒に、「この型の `area` はここにある」という
+  **関数の住所録**へのポインタを持っています。この住所録を **vtable** と言います。
+
 | 観点 | (A) generic（静的ディスパッチ） | (B) `dyn Trait`（動的ディスパッチ） |
 | --- | --- | --- |
 | 型の決まる時機 | コンパイル時（`T` ごとにコードが複製される＝単相化） | 実行時（vtable経由で呼び出し先を決める） |
@@ -148,7 +157,8 @@ trait がobject safeであるための条件（主なもの）:
 - `Self` はレシーバ（`&self`, `&mut self`, `self: Box<Self>` など）以外の位置に現れない。
   **戻り値に `Box<Self>` を書くのもNG**です（`Self` を値で返すのと同じく E0038 になります）
 - メソッドにgenericパラメータが無い
-- trait自体が `Sized` をsupertraitとして要求していない（`trait Foo: Sized`）
+- trait自体が `Sized` を前提にしていない（`trait Foo: Sized` のように、「この trait を実装するなら `Sized` も必要」と書いていない。
+  このように trait に前提として付ける trait を **supertrait** と言います）
 
 ただし、個々のメソッドに `where Self: Sized` を付けると、そのメソッドは
 `dyn Trait` からは呼べなくなる代わりに、trait全体のobject safetyを壊さなくなります。

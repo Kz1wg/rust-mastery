@@ -1,0 +1,8 @@
+[package]
+name = "p02_csv"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# 依存crateなし。実務なら csv crate を使う（本文を参照）。
+[dependencies]

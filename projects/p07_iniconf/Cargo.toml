@@ -1,0 +1,9 @@
+[package]
+name = "p07_iniconf"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "INI 形式の設定ファイルを読む小さなライブラリ（Rust Mastery の P7）"
+
+# 依存crateなし。ライブラリは依存が少ないほど、利用者の負担（ビルド時間・バージョンの衝突）が減る。
+[dependencies]

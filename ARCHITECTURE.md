@@ -96,7 +96,17 @@ rust-mastery/
 │   └── ex061_documentation/   # doctest が主なテスト、#![deny(missing_docs)]
 ├── solutions/                 # 模範解答（srcのみ。crateではない）
 │   └── ex001_move_semantics/src/lib.rs  # 他、exercises/ と同名で対応
-├── projects/                  # 実践プロジェクト・Final Project（Phase 7〜8）
+├── projects/                  # 実践プロジェクト（Chapter 17）と Final Project の参考実装。ルートとは別の workspace
+│   ├── Cargo.toml             # [workspace] members = ["p*", "final_*"]。依存crateを使ってよいのはここだけ
+│   ├── p01_wordstat/          # lib.rs + main.rs（CLI）
+│   ├── p02_csv/
+│   ├── p03_logstats/
+│   ├── p04_http_client/       # Transport trait。StdTransport は TcpStream で HTTP/1.1 を話す（テストは 127.0.0.1 のみ）
+│   ├── p05_cache/
+│   ├── p06_fetch_all/         # tokio を使う唯一のプロジェクト（rt/net/io-util/time/sync のみ）。テストは start_paused とローカルサーバー
+│   ├── p07_iniconf/           # 複数ファイル（lib/document/error/parse）。doctest も判定に含まれる
+│   ├── final_lending/         # Chapter 18 の例題の参考実装（骨組みではなく完成品。solutions/ は無い）。bin 名は lending
+│   └── solutions/             # プロジェクトの解答（tools/verify_projects.sh が重ねて検証）
 ├── tools/
 │   ├── check_error_codes.py   # compile_fail のエラーコード検証（Phase 3で追加済み）
 │   └── check-exercises/       # 進捗確認・解答検証CLI（Phase 4）

@@ -1,0 +1,8 @@
+[package]
+name = "p05_cache"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# 依存crateなし。実務なら moka などのキャッシュ crate を検討する（本文を参照）。
+[dependencies]

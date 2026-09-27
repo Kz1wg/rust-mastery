@@ -1,0 +1,13 @@
+[package]
+name = "final_lending"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Chapter 18 Final Project の例題「図書室の貸出管理」の参考実装"
+
+[[bin]]
+name = "lending"
+path = "src/main.rs"
+
+# 依存crateなし。日付も自前の小さな型で扱う（本文 18-3 を参照）。
+[dependencies]

@@ -2,9 +2,15 @@
 
 ## Concept
 
-通常のassociated type（Chapter 04-3）は、「1つの型につき1つに決まる型」を表現します。
-しかし、**「1つの型につき、呼び出しごとに（lifetimeによって）違う型」**を表現したい場面があります。
-これがGAT（Generic Associated Types）が必要になる理由です。
+Chapter 04-3 の associated type（`type Item;` のように trait の中で決める型）は、
+「1つの型につき、決まった型が1つ」という関係を表すものでした。
+
+ところが、「自分の中身を**借りて**読むイテレータを返したい」とき、困ったことが起きます。
+借りている期間（lifetime）は**呼び出すたびに違う**ので、返す型も呼び出しごとに少しずつ違うのです。
+普通の associated type には、この「呼び出しごとの違い」を書く場所がありません。
+
+そこで、associated type 自体に lifetime などのパラメータを持たせられるようにしたのが
+**GAT**（Generic Associated Types）です。
 
 このLessonの目標は「GATを使いこなす」ことではありません。**なぜ普通のassociated typeでは
 足りないのか**を、最小限の例で理解することです。

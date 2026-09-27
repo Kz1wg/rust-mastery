@@ -6,9 +6,9 @@ Rustの文法を教える教材ではありません。
 「この状態は型で表現した方がいいか？」「このtraitは本当に必要か？」「このAPIは利用者に何を保証するか？」——
 そう考えられるようになることが目的です。
 
-> 開発状況: 設計・mdBook・**本文の全章（00〜16）**・全61演習（ex001〜ex061）・`check-exercises`（進捗確認CLI）を実装済みです。Chapter 17（実践プロジェクト）・18（Final Project）・Appendix はまだです。
+> 開発状況: 計画した内容は**すべて揃いました**。本文（Chapter 00〜18）、全61演習（ex001〜ex061）、実践プロジェクト P1〜P7、Final Project の参考実装、Appendix A〜C、`check-exercises`（進捗確認CLI）です。
 >
-> 演習crateの依存は**ゼロ**（標準ライブラリのみ）です。Chapter 11 の async も、最小ランタイムを自作して動かします。tokio は 11-4 で解説し、Chapter 17 の実践プロジェクトで実際に使う予定です。
+> 演習crateの依存は**ゼロ**（標準ライブラリのみ）です。Chapter 11 の async も、最小ランタイムを自作して動かします。tokio は 11-4 で解説し、実践プロジェクト P6 で実際に使います（依存crateを使うのは `projects/` の中だけです）。
 
 ## 対象者
 
@@ -33,7 +33,24 @@ Rustの文法を教える教材ではありません。
 | ツール | 推奨・要件 | 動作確認済み |
 | --- | --- | --- |
 | Rust | 1.85 以上を推奨（edition 2024 が使える最小バージョン）。現時点の教材コードは edition 2021 | 1.98.1 / 1.75.0 |
+| mdBook | 0.4系・0.5系のどちらでも動作 | 0.5.4 / 0.4.40 |
 
+（動作確認の内容: `mdbook test` と `python3 tools/check_error_codes.py` が第1〜3章で通ること）
+
+## mdBookの起動
+
+```bash
+cd book
+mdbook serve --open     # http://localhost:3000
+mdbook build            # 静的HTMLを book/book/ に出力
+mdbook test             # 本文中のRustコードを検証
+```
+
+`compile_fail,EXXXX` のエラーコード一致は `mdbook test` では検証されないため、別途:
+
+```bash
+python3 tools/check_error_codes.py   # どのディレクトリからでも実行可
+```
 
 ## 演習の実行
 
@@ -52,6 +69,34 @@ cd exercises/ex055_derive_macro && cargo test
 ルートで `-p` なしの `cargo test` を実行すると、`check-exercises` だけが対象になります
 （`default-members` の設定）。未着手の演習は `todo!()` で失敗するのが正常な状態なので、
 全演習をまとめて確認したいときは次の `check-exercises` を使ってください。
+
+## 実践プロジェクト（Chapter 17）
+
+`projects/` は、ルートとは**別の workspace** です。演習（`exercises/`）は依存crateゼロですが、
+実践プロジェクトでは必要に応じて依存crateを使うため、範囲をこのディレクトリに限っています。
+
+```bash
+cd projects
+cargo test -p p01_wordstat
+cargo run -p p01_wordstat -- --top 3 notes.txt
+```
+
+P6 だけは tokio を使うため、初回の `cargo test` で crates.io から依存crateを取得します（ネットワーク接続が必要）。
+
+解答の検証（メンテナ向け）: `./tools/verify_projects.sh --fmt --clippy`
+
+## Final Project（Chapter 18）
+
+小さなアプリケーションを、要件から設計して作ります。コードより**設計の過程**が主役です。
+設計メモは [docs/final-project-template.md](docs/final-project-template.md) をコピーして書きます。
+
+例題「図書室の貸出管理」の参考実装が `projects/final_lending/` にあります（18-7 まで進むまで開かないでください）。
+
+```bash
+cd projects
+cargo test -p final_lending
+cargo run -p final_lending -- --data /tmp/lib.tsv list
+```
 
 ## 進捗の確認
 
@@ -82,10 +127,7 @@ cargo run -p check-exercises -- --solutions   # test のみ。進捗表示と同
 - `compile_fail` のエラーコード検証（`tools/check_error_codes.py`）
 - 演習の骨組みがビルドできること
 - 解答が test / fmt / clippy を通ること（`tools/verify_solutions.sh --fmt --clippy`）
-
-> このワークフローは、実際にGitHub Actions上で実行して確認したものではありません。
-> 各ステップに相当するコマンドをローカルで実行し、通ることは確認しています。
-> 最初のpush後、Actionsタブで結果を確認してください。
+- 実践プロジェクト（`projects/`）がビルドでき、解答と Final Project の参考実装が test / fmt / clippy を通ること（`tools/verify_projects.sh --fmt --clippy`）
 
 演習の骨組みは `exercises/`、模範解答は `solutions/` にあります。**まず自分で解き、答えを見るのは最後にしてください。**
 
@@ -103,11 +145,12 @@ cargo run -p check-exercises -- --solutions   # test のみ。進捗表示と同
 book/        mdBookプロジェクト（教材本文）
 exercises/   演習（骨組み + テスト）。exNNN_<name>/ ごとに1crate
 solutions/   模範解答（exercises/ と同じディレクトリ名で src/ のみ）
-projects/    実践プロジェクト・Final Project（Phase 7〜8、未着手）
+projects/    実践プロジェクト（p01〜p07）と Final Project の参考実装（final_lending）。別 workspace
 tools/       check-exercises（進捗CLI）、verify_solutions.sh、check_error_codes.py
 ```
 
 詳細は [ARCHITECTURE.md](ARCHITECTURE.md) を参照。
+本文を書く・直すときの基準は [docs/writing-guide.md](docs/writing-guide.md) にあります。
 
 ## ライセンス
 

@@ -21,5 +21,14 @@ struct / enum / match / Result / Option を書け、所有権の基本を理解�
 
 ## 進め方
 
-サイドバーの各章を順に進めます。灰色（リンクなし）の項目は、これから追加される章です。
+サイドバーの各章を順に進めます。
+
+1. まず [00-2](00-introduction/00-2-cargo-test.md) で演習の進め方を、[00-3](00-introduction/00-3-diagnostic.md) の診断問題で前提知識を確かめてください
+2. Chapter 01〜16 で、1つずつ考え方を学びます。各 Lesson には `cargo test` で判定できる演習があります
+3. Chapter 17 の実践プロジェクトで、複数の章の考え方を組み合わせます
+4. Chapter 18 の Final Project で、何もないところから設計します
+
+付録は、必要なときに引く辞書として使ってください。
+コンパイルエラーに出会ったら [Appendix A](appendix/a-compiler-errors.md)、AI にレビューさせるときは [Appendix B](appendix/b-ai-review-prompts.md)、用語が分からなくなったら [Appendix C](appendix/c-glossary.md) です。
+
 全体の計画は、リポジトリの `ROADMAP.md` にあります。

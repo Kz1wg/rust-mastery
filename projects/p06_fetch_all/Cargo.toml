@@ -1,0 +1,17 @@
+[package]
+name = "p06_fetch_all"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# この教材で初めて依存crateを使うプロジェクト。features は必要なものだけ有効にする（Lesson 11-4）。
+# - rt: ランタイム本体と tokio::spawn / net: TcpStream / io-util: read_to_end など
+# - time: timeout と sleep / sync: Semaphore
+# rt-multi-thread は使わない（ライブラリ側はランタイムの種類を決めない。起動するのは利用者）。
+[dependencies]
+tokio = { version = "1", features = ["rt", "net", "io-util", "time", "sync"] }
+
+# テストだけで使う機能。
+# - macros: #[tokio::test] / test-util: 時計を止めて進める（start_paused）
+[dev-dependencies]
+tokio = { version = "1", features = ["rt", "net", "io-util", "time", "sync", "macros", "test-util"] }
