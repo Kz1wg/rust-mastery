@@ -150,7 +150,7 @@ fn main() {
 
 ## Exercise
 
-**`ex023_custom_error_types`** — `cargo test -p ex023_custom_error_types` で判定します。
+**[`ex023_custom_error_types`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex023_custom_error_types)** — `cargo test -p ex023_custom_error_types` で判定します。
 
 `enum ReadNumberError` を、`Display` と `std::error::Error` の実装込みで作ります。
 

@@ -15,6 +15,9 @@ Concept → Why? → Bad Example → Problem → Think → Hint
 **Think** の問いには、Hintを開く前に、自分の言葉で答えてみてください。
 Hintは1つずつ、Solutionは最後に開きます。
 
+**Exercise** の演習は、この本文とは別に、GitHub のリポジトリ（[Kz1wg/rust-mastery](https://github.com/Kz1wg/rust-mastery)）にあります。
+手元に用意する方法は、次の [Lesson 00-2](00-2-cargo-test.md) で説明します。
+
 ## 例：コンパイルエラーを教材として読む
 
 この教材では、コンパイルエラーを「直して終わり」にしません。

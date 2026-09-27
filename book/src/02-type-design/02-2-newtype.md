@@ -146,7 +146,7 @@ fn main() {
 
 ## Exercise
 
-**`ex006_newtype`** — `cargo test -p ex006_newtype` で判定します。
+**[`ex006_newtype`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex006_newtype)** — `cargo test -p ex006_newtype` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

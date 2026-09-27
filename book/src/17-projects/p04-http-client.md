@@ -96,6 +96,8 @@ trait を作る理由が、実際にあるわけです。
 cd projects && cargo test -p p04_http_client
 ```
 
+コードは [projects/p04_http_client](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p04_http_client) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## 振り返り
 
 - [ ] trait を作る理由がある場面（テストのための差し替え）とない場面（P3）を区別できる

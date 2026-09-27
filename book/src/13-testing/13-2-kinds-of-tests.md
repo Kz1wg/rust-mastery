@@ -129,7 +129,7 @@ test src/lib.rs - divide (line 5) ... ok
 
 ## Exercise
 
-**`ex051_kinds_of_tests`** — `cargo test -p ex051_kinds_of_tests` で判定します。
+**[`ex051_kinds_of_tests`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex051_kinds_of_tests)** — `cargo test -p ex051_kinds_of_tests` で判定します。
 
 この演習では、**3種類のテストがすでに用意されています**。関数を実装すると、3種類すべてが通るようになります。
 

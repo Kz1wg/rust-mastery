@@ -151,7 +151,7 @@ fn main() {
 
 ## Exercise
 
-**`ex008_visibility`** — `cargo test -p ex008_visibility` で判定します。
+**[`ex008_visibility`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex008_visibility)** — `cargo test -p ex008_visibility` で判定します。
 （`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |

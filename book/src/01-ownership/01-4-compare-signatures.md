@@ -142,7 +142,7 @@ fn main() {
 
 ## Exercise
 
-**`ex004_compare_signatures`** — `cargo test -p ex004_compare_signatures` で判定します。
+**[`ex004_compare_signatures`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex004_compare_signatures)** — `cargo test -p ex004_compare_signatures` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

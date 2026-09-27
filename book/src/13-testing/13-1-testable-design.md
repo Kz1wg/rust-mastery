@@ -166,7 +166,7 @@ fn main() {
 
 ## Exercise
 
-**`ex050_testable_design`** — `cargo test -p ex050_testable_design` で判定します。
+**[`ex050_testable_design`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex050_testable_design)** — `cargo test -p ex050_testable_design` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

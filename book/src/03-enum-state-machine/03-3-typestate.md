@@ -222,7 +222,7 @@ fn main() {
 
 ## Exercise
 
-**`ex011_typestate`** — `cargo test -p ex011_typestate` で判定します。
+**[`ex011_typestate`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex011_typestate)** — `cargo test -p ex011_typestate` で判定します。
 
 `RequestBuilder` を typestate で実装します。
 

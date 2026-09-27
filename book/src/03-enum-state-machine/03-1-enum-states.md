@@ -156,7 +156,7 @@ fn main() {
 
 ## Exercise
 
-**`ex009_enum_states`** — `cargo test -p ex009_enum_states` で判定します。
+**[`ex009_enum_states`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex009_enum_states)** — `cargo test -p ex009_enum_states` で判定します。
 （`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |

@@ -103,7 +103,7 @@ APIの使いにくさに気づく機会になります（Chapter 16）。
 
 ## Exercise
 
-**`ex047_lib_and_bin`** — `cargo test -p ex047_lib_and_bin` で判定します。
+**[`ex047_lib_and_bin`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex047_lib_and_bin)** — `cargo test -p ex047_lib_and_bin` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

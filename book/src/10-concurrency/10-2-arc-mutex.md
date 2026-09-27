@@ -137,7 +137,7 @@ Rust はデータ競合を防ぎますが、**デッドロックは防ぎませ�
 
 ## Exercise
 
-**`ex039_arc_mutex`** — `cargo test -p ex039_arc_mutex` で判定します。
+**[`ex039_arc_mutex`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex039_arc_mutex)** — `cargo test -p ex039_arc_mutex` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

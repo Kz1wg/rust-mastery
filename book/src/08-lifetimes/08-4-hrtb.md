@@ -100,7 +100,7 @@ lifetime を「明示」したことで壊していた**のです。
 
 ## Exercise
 
-**`ex033_hrtb`** — `cargo test -p ex033_hrtb` で判定します。
+**[`ex033_hrtb`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex033_hrtb)** — `cargo test -p ex033_hrtb` で判定します。
 
 | 関数 | シグネチャ（用意済み） | 実装すること |
 | --- | --- | --- |

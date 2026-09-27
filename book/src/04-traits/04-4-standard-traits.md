@@ -214,7 +214,7 @@ impl Default for Percentage {
 
 ## Exercise
 
-**`ex016_standard_traits`** — `cargo test -p ex016_standard_traits` で判定します。
+**[`ex016_standard_traits`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex016_standard_traits)** — `cargo test -p ex016_standard_traits` で判定します。
 
 `Percentage` に `TryFrom<&str>` を実装し、`Password` に「中身を隠す」独自の `Debug` を実装します。
 

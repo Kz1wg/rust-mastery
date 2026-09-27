@@ -156,7 +156,7 @@ lifetime注釈を書くときの問いは、**「この戻り値は、どの引�
 
 ## Exercise
 
-**`ex030_lifetime_annotations`** — `cargo test -p ex030_lifetime_annotations` で判定します。
+**[`ex030_lifetime_annotations`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex030_lifetime_annotations)** — `cargo test -p ex030_lifetime_annotations` で判定します。
 
 | 関数 | シグネチャ（用意済み） | 実装すること |
 | --- | --- | --- |

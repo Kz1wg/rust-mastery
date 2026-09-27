@@ -171,7 +171,7 @@ cargo semver-checks
 
 ## Exercise
 
-**`ex060_semver_friendly`** — `cargo test -p ex060_semver_friendly` で判定します。
+**[`ex060_semver_friendly`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex060_semver_friendly)** — `cargo test -p ex060_semver_friendly` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

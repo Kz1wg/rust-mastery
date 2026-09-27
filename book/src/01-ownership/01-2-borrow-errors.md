@@ -129,7 +129,7 @@ fn main() {
 
 ## Exercise
 
-**`ex002_borrow_errors`** — `cargo test -p ex002_borrow_errors` で判定します。
+**[`ex002_borrow_errors`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex002_borrow_errors)** — `cargo test -p ex002_borrow_errors` で判定します。
 
 `src/lib.rs` の先頭コメントに、借用エラーになる元のコード（Bad Example 1 と同じ形）が示されています。
 それを**設計を変えて**書き直す2つの関数を実装します。

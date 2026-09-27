@@ -155,7 +155,7 @@ fn main() {
 
 ## Exercise
 
-**`ex041_message_passing`** — `cargo test -p ex041_message_passing` で判定します。
+**[`ex041_message_passing`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex041_message_passing)** — `cargo test -p ex041_message_passing` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

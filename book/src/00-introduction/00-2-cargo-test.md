@@ -17,6 +17,48 @@
 `tests/tests.rs` のテストに書かれています。
 テストを読まずに実装を始めると、問題文の半分を読まずに解き始めるのと同じことになります。
 
+## 演習はどこにあるか
+
+この Web ページ（本文）には、演習のコードは入っていません。
+演習は、GitHub のリポジトリ **[Kz1wg/rust-mastery](https://github.com/Kz1wg/rust-mastery)** にあります。
+自分のパソコンにコピー（clone）して、そこで解きます。
+
+### 準備
+
+Rust（`cargo`）が使えることを確かめてから、リポジトリを clone します。
+
+```bash
+cargo --version    # 1.75 以上なら大丈夫。無ければ https://rustup.rs からインストールする
+
+git clone https://github.com/Kz1wg/rust-mastery.git
+cd rust-mastery
+cargo run -p check-exercises    # 全演習の一覧が出れば準備完了（最初は全部 ⬜）
+```
+
+以降のコマンドは、すべてこの `rust-mastery` ディレクトリ（リポジトリのいちばん上）で実行します。
+エディタで開くときも、このディレクトリごと開いてください。rust-analyzer（エディタの Rust 補完）が、全ての演習を認識します。
+
+### リポジトリの中身
+
+```text
+rust-mastery/
+├── book/          この本文（Web ページの元の Markdown）
+├── exercises/     演習。ex001_move_semantics/ から ex061_documentation/ まで、1つの演習が1つのディレクトリ
+├── solutions/     演習の模範解答（テストが通るまで開かない）
+├── projects/      Chapter 17 の実践プロジェクトと、Chapter 18 の参考実装
+├── docs/          演習の一覧（exercise-index.md）など
+└── tools/         check-exercises（進み具合の表示）など
+```
+
+### Lesson と演習の対応
+
+各 Lesson の終わり近くにある **Exercise** の節に、演習の名前が書いてあります。
+
+> **`ex001_move_semantics`** — `cargo test -p ex001_move_semantics` で判定します。
+
+この名前が、そのまま `exercises/` の下のディレクトリ名です。
+全演習と Lesson の対応表は、リポジトリの [docs/exercise-index.md](https://github.com/Kz1wg/rust-mastery/blob/main/docs/exercise-index.md) にあります。
+
 ## 演習の形
 
 1つの演習は、1つの小さな crate です。
@@ -59,8 +101,7 @@ cargo run -p check-exercises
 ```
 
 `-p` の後ろは演習の名前（crate 名）です。
-リポジトリのルートで実行してください。
-入れ子になった演習（`ex012`・`ex048`・`ex055`）だけは、その演習のディレクトリの中で `cargo test` を実行します（README を参照）。
+入れ子になった演習（`ex012`・`ex048`・`ex055`）だけは、その演習のディレクトリの中で `cargo test` を実行します（例: `cd exercises/ex012_non_exhaustive && cargo test`）。
 
 `check-exercises` は、全演習の状態を章ごとに表示します。
 
@@ -175,6 +216,8 @@ cargo fmt -p ex001_move_semantics      # 書式を標準の形にそろえる
 
 ## Review
 
+- [ ] リポジトリを clone し、`check-exercises` で演習の一覧を表示できた
+- [ ] Lesson の Exercise 節から、対応する演習のディレクトリを見つけられる
 - [ ] 演習の3つのファイル（`exercise.toml`・`src/lib.rs`・`tests/tests.rs`）の役割を説明できる
 - [ ] 失敗の3種類（未実装・値の違い・コンパイルエラー）を見分けられる
 - [ ] `assert_eq!` の失敗で、left と right のどちらが期待値かを知っている

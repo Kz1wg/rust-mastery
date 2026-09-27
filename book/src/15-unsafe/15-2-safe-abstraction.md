@@ -125,7 +125,7 @@ unsafe を書いたら、Miri でテストを走らせるのが実務の定番�
 
 ## Exercise
 
-**`ex057_safe_abstraction`** — `cargo test -p ex057_safe_abstraction` で判定します。
+**[`ex057_safe_abstraction`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex057_safe_abstraction)** — `cargo test -p ex057_safe_abstraction` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

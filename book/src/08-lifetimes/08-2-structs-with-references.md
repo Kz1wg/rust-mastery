@@ -194,7 +194,7 @@ fn main() {
 
 ## Exercise
 
-**`ex031_struct_with_reference`** — `cargo test -p ex031_struct_with_reference` で判定します。
+**[`ex031_struct_with_reference`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex031_struct_with_reference)** — `cargo test -p ex031_struct_with_reference` で判定します。
 
 `Parser<'a>` の `next_word(&mut self) -> Option<&'a str>` を実装します（シグネチャは用意済み）。
 テストには、**取り出した単語を持ったまま次の単語を取り出す**ものが含まれています。

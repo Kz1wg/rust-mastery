@@ -173,7 +173,7 @@ fn main() {
 
 ## Exercise
 
-**`ex007_parse_dont_validate`** — `cargo test -p ex007_parse_dont_validate` で判定します。
+**[`ex007_parse_dont_validate`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex007_parse_dont_validate)** — `cargo test -p ex007_parse_dont_validate` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

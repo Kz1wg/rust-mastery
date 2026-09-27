@@ -157,7 +157,7 @@ tokio が提供しているのは、この章で自作しなかった部分で�
 
 ## Exercise
 
-**`ex045_join2`** — `cargo test -p ex045_join2` で判定します。
+**[`ex045_join2`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex045_join2)** — `cargo test -p ex045_join2` で判定します。
 
 `Join2` の `poll` を実装します（`Future` を2つ持ち、両方が `Ready` になったら結果の組を返す）。
 テストでは、**スレッドを1つも使わずに**2つの処理が交互に進むことを、ログの順序で確認します。

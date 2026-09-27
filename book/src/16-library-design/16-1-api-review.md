@@ -149,7 +149,7 @@ Chapter 12-2 で `main.rs` から自分のライブラリを `use` したのも�
 
 ## Exercise
 
-**`ex059_api_review`** — `cargo test -p ex059_api_review` で判定します。
+**[`ex059_api_review`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex059_api_review)** — `cargo test -p ex059_api_review` で判定します。
 
 上の改善版（`Unit`・`Options`・`Count`）を使って、`analyze` を実装します。
 

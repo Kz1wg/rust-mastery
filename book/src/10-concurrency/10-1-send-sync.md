@@ -110,7 +110,7 @@ fn main() {
 
 ## Exercise
 
-**`ex038_send_sync`** — `cargo test -p ex038_send_sync` で判定します。
+**[`ex038_send_sync`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex038_send_sync)** — `cargo test -p ex038_send_sync` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

@@ -119,7 +119,7 @@ enum ConfigError {
 
 ## Exercise
 
-**`ex022_result_design`** — `cargo test -p ex022_result_design` で判定します。
+**[`ex022_result_design`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex022_result_design)** — `cargo test -p ex022_result_design` で判定します。
 
 粗すぎる `Err = String` の関数を、呼び出し側が区別したい種類ごとの `enum` に設計し直します。
 

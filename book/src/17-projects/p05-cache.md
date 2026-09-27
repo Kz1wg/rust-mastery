@@ -91,6 +91,8 @@ Lesson 10-2 の「ロックを持ったまま、時間のかかる処理をし�
 cd projects && cargo test -p p05_cache
 ```
 
+コードは [projects/p05_cache](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p05_cache) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## 振り返り
 
 - [ ] 時刻を外から受け取ることで、期限切れのテストが一瞬で書けることを説明できる

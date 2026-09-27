@@ -132,7 +132,7 @@ fn can_delete(role: Role) -> bool {
 
 ## Exercise
 
-**`ex005_invalid_states`** — `cargo test -p ex005_invalid_states` で判定します。
+**[`ex005_invalid_states`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex005_invalid_states)** — `cargo test -p ex005_invalid_states` で判定します。
 （`cargo test` で自動判定するため、型定義や公開APIのシグネチャはあらかじめ用意してあります。本体の `todo!()` を実装してください。）
 
 | 課題 | 仕様 |

@@ -120,7 +120,7 @@ fn find_max_ord<T: Ord + Clone>(items: &[T]) -> Option<T> {
 
 ## Exercise
 
-**`ex019_trait_bounds`** — `cargo test -p ex019_trait_bounds` で判定します。
+**[`ex019_trait_bounds`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex019_trait_bounds)** — `cargo test -p ex019_trait_bounds` で判定します。
 
 不要なboundが付いた関数から、実際に使われているboundだけを残すように直します。
 

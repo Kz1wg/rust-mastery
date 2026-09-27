@@ -99,6 +99,8 @@ CSV の1文字の意味は、**それまでに何を読んだか**で変わり�
 cd projects && cargo test -p p02_csv
 ```
 
+コードは [projects/p02_csv](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p02_csv) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## 振り返り
 
 - [ ] 1行の解析を状態機械にした利点を、`if` を重ねる書き方と比べて説明できる

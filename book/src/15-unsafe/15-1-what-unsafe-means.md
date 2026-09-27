@@ -127,7 +127,7 @@ Rust 2024 edition からは、**`unsafe fn` の中でも、危険な操作ごと
 
 ## Exercise
 
-**`ex056_unsafe_basics`** — `cargo test -p ex056_unsafe_basics` で判定します。
+**[`ex056_unsafe_basics`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex056_unsafe_basics)** — `cargo test -p ex056_unsafe_basics` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

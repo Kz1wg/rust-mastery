@@ -107,7 +107,7 @@ traitを設計するときは、次の問いを立ててください。
 
 ## Exercise
 
-**`ex013_trait_purpose`** — `cargo test -p ex013_trait_purpose` で判定します。
+**[`ex013_trait_purpose`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex013_trait_purpose)** — `cargo test -p ex013_trait_purpose` で判定します。
 
 このLessonとは逆に、**traitを導入する理由が実際にある**場面を実装します。
 `PaymentMethod` trait を、2つの実装（`CreditCard` / `BankTransfer`）と、

@@ -187,7 +187,7 @@ fn main() {
 
 ## Exercise
 
-**`ex034_phantom_data`** — `cargo test -p ex034_phantom_data` で判定します。
+**[`ex034_phantom_data`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex034_phantom_data)** — `cargo test -p ex034_phantom_data` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

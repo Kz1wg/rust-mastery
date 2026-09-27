@@ -127,7 +127,7 @@ lifetimeエラーに遭遇したとき、「`'static` を付けたら通った�
 
 ## Exercise
 
-**`ex032_static_bound`** — `cargo test -p ex032_static_bound` で判定します。
+**[`ex032_static_bound`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex032_static_bound)** — `cargo test -p ex032_static_bound` で判定します。
 
 `fn describe_later<T: std::fmt::Display + 'static>(item: T) -> Box<dyn Fn() -> String>` を実装します
 （`item` を後で文字列化するクロージャを返す）。テストでは `String` や `i32` のような所有型を渡せること、

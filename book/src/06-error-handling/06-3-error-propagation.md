@@ -131,7 +131,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Exercise
 
-**`ex024_error_propagation`** — `cargo test -p ex024_error_propagation` で判定します。
+**[`ex024_error_propagation`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex024_error_propagation)** — `cargo test -p ex024_error_propagation` で判定します。
 
 `?` と `From` 実装を使って、複数の原因から失敗しうる関数を実装します。
 

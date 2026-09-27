@@ -197,7 +197,7 @@ fn main() {
 
 ## Exercise
 
-**`ex010_state_machine`** — `cargo test -p ex010_state_machine` で判定します。
+**[`ex010_state_machine`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex010_state_machine)** — `cargo test -p ex010_state_machine` で判定します。
 
 ドアの状態機械を実装します。
 

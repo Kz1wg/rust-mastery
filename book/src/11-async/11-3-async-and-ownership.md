@@ -153,7 +153,7 @@ some_async_io().await;
 
 ## Exercise
 
-**`ex044_async_ownership`** — `cargo test -p ex044_async_ownership` で判定します。
+**[`ex044_async_ownership`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex044_async_ownership)** — `cargo test -p ex044_async_ownership` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

@@ -140,7 +140,7 @@ pub struct Options {
 
 ## Exercise
 
-**`ex012_non_exhaustive`** — `cd exercises/ex012_non_exhaustive && cargo test` で判定します
+**[`ex012_non_exhaustive`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex012_non_exhaustive)** — `cd exercises/ex012_non_exhaustive && cargo test` で判定します
 （`lib` と `app` の2crateからなる独立した workspace なので、`-p` ではなくディレクトリ内で実行します）。
 
 | crate | 内容 |

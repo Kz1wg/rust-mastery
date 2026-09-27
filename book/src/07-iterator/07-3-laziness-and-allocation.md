@@ -114,7 +114,7 @@ fn main() {
 
 ## Exercise
 
-**`ex028_laziness_and_allocation`** — `cargo test -p ex028_laziness_and_allocation` で判定します。
+**[`ex028_laziness_and_allocation`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex028_laziness_and_allocation)** — `cargo test -p ex028_laziness_and_allocation` で判定します。
 
 中間 `Vec` を作らずに済む形へ、関数のシグネチャと実装を書き直します。
 

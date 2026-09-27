@@ -174,7 +174,7 @@ C 言語のマクロ（単純な文字列置換）との大きな違いです。
 
 ## Exercise
 
-**`ex053_when_to_use_macros`** — `cargo test -p ex053_when_to_use_macros` で判定します。
+**[`ex053_when_to_use_macros`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex053_when_to_use_macros)** — `cargo test -p ex053_when_to_use_macros` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

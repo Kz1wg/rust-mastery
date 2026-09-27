@@ -140,7 +140,7 @@ fn main() {
 
 ## Exercise
 
-**`ex040_interior_mutability`** — `cargo test -p ex040_interior_mutability` で判定します。
+**[`ex040_interior_mutability`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex040_interior_mutability)** — `cargo test -p ex040_interior_mutability` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

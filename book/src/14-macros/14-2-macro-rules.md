@@ -141,7 +141,7 @@ macro_rules! max_of {
 
 ## Exercise
 
-**`ex054_macro_rules`** — `cargo test -p ex054_macro_rules` で判定します。
+**[`ex054_macro_rules`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex054_macro_rules)** — `cargo test -p ex054_macro_rules` で判定します。
 
 | マクロ | 仕様 |
 | --- | --- |

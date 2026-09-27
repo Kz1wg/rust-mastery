@@ -112,7 +112,7 @@ fn main() {
 
 ## Exercise
 
-**`ex027_custom_iterator`** — `cargo test -p ex027_custom_iterator` で判定します。
+**[`ex027_custom_iterator`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex027_custom_iterator)** — `cargo test -p ex027_custom_iterator` で判定します。
 
 `Fibonacci` の `Iterator` 実装を書きます。
 

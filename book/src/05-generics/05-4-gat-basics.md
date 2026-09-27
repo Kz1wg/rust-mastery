@@ -117,7 +117,7 @@ GATは、次のような場面で必要になります。
 
 ## Exercise
 
-**`ex021_gat_basics`** — `cargo test -p ex021_gat_basics` で判定します。
+**[`ex021_gat_basics`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex021_gat_basics)** — `cargo test -p ex021_gat_basics` で判定します。
 
 `Container` trait をGATで定義し、`Numbers` に実装します。
 

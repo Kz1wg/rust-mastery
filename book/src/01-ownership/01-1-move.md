@@ -138,7 +138,7 @@ impl Drop for Handle {
 
 ## Exercise
 
-**`ex001_move_semantics`** — `cargo test -p ex001_move_semantics` で判定します。
+**[`ex001_move_semantics`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex001_move_semantics)** — `cargo test -p ex001_move_semantics` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

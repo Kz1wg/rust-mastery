@@ -268,6 +268,8 @@ async fn fetch_one_times_out() {
 cd projects && cargo test -p p06_fetch_all
 ```
 
+コードは [projects/p06_fetch_all](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p06_fetch_all) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## Challenge
 
 - `fetch_all` に「全体の制限時間」を足すとしたら、どこに `timeout` を置けばよいでしょうか。

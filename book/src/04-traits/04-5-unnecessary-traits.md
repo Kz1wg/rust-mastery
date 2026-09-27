@@ -107,7 +107,7 @@ fn main() {
 
 ## Exercise
 
-**`ex017_review_logger`** — `cargo test -p ex017_review_logger` で判定します。
+**[`ex017_review_logger`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex017_review_logger)** — `cargo test -p ex017_review_logger` で判定します。
 
 上の `Logger` / `App<L>` の例を、trait を使わない設計に書き直してください
 （`ConsoleLogger` のロジックを直接メソッドとして実装します）。

@@ -112,7 +112,7 @@ lifetime のエラーで「この値は十分長く生きていない」と言�
 
 ## Exercise
 
-**`ex035_variance`** — `cargo test -p ex035_variance` で判定します。
+**[`ex035_variance`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex035_variance)** — `cargo test -p ex035_variance` で判定します。
 
 | 関数 | 実装すること |
 | --- | --- |

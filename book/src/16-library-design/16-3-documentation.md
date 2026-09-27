@@ -160,7 +160,7 @@ cargo doc --open
 
 ## Exercise
 
-**`ex061_documentation`** — `cargo test -p ex061_documentation` で判定します。
+**[`ex061_documentation`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex061_documentation)** — `cargo test -p ex061_documentation` で判定します。
 
 この演習のテストの中心は、**ドキュメントの中のコード例**（ドキュメントテスト）です。
 `parse_duration` の `# Examples` が仕様書になっていて、実装するとそれが通るようになります。

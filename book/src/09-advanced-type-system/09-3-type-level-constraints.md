@@ -172,7 +172,7 @@ trait にメソッドを追加しても利用者を壊しません（Lesson 03-4
 
 ## Exercise
 
-**`ex036_type_level_constraints`** — `cargo test -p ex036_type_level_constraints` で判定します。
+**[`ex036_type_level_constraints`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex036_type_level_constraints)** — `cargo test -p ex036_type_level_constraints` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

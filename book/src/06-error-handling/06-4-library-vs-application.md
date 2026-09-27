@@ -131,7 +131,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 ## Exercise
 
-**`ex025_library_vs_application`** — `cargo test -p ex025_library_vs_application` で判定します。
+**[`ex025_library_vs_application`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex025_library_vs_application)** — `cargo test -p ex025_library_vs_application` で判定します。
 
 「ライブラリ」の関数として `ConfigError` の `enum` を設計し、
 「アプリケーション」側の `main` 相当の関数で `Box<dyn Error>` に集約します。

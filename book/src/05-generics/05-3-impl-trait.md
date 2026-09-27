@@ -194,7 +194,7 @@ fn main() {
 
 ## Exercise
 
-**`ex020_impl_trait`** — `cargo test -p ex020_impl_trait` で判定します。
+**[`ex020_impl_trait`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex020_impl_trait)** — `cargo test -p ex020_impl_trait` で判定します。
 
 引数位置・戻り値位置それぞれの `impl Trait` を使った関数を実装します。
 

@@ -148,7 +148,7 @@ fn panics_on_bad_index() {
 
 ## Exercise
 
-**`ex052_testing_failures`** — `cargo test -p ex052_testing_failures` で判定します。
+**[`ex052_testing_failures`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex052_testing_failures)** — `cargo test -p ex052_testing_failures` で判定します。
 
 | 関数 | 仕様 |
 | --- | --- |

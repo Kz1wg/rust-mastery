@@ -239,6 +239,8 @@ let timeout: u64 = match doc.get_parsed("server", "timeout") {
 cd projects && cargo test -p p07_iniconf
 ```
 
+コードは [projects/p07_iniconf](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p07_iniconf) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 crate のドキュメントに書いた例（doctest）も、判定に含まれます。
 ドキュメントの例が古くなって動かなくなると、テストが失敗して気づけます（Lesson 16-3）。
 

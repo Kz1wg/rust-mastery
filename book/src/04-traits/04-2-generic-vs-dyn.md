@@ -171,7 +171,7 @@ trait がobject safeであるための条件（主なもの）:
 
 ## Exercise
 
-**`ex014_generic_vs_dyn`** — `cargo test -p ex014_generic_vs_dyn` で判定します。
+**[`ex014_generic_vs_dyn`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex014_generic_vs_dyn)** — `cargo test -p ex014_generic_vs_dyn` で判定します。
 
 `Shape` trait と、(A) generic版・(B) dyn版の `total_area` を両方実装します。
 

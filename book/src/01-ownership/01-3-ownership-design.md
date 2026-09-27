@@ -137,7 +137,7 @@ fn main() {
 
 ## Exercise
 
-**`ex003_ownership_design`** — `cargo test -p ex003_ownership_design` で判定します。
+**[`ex003_ownership_design`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex003_ownership_design)** — `cargo test -p ex003_ownership_design` で判定します。
 
 この演習では、シグネチャはあらかじめ決めてあります（`cargo test` で自動判定するため）。
 実装する前に、**なぜこの受け方なのか**を本Lessonの表と照らし合わせて説明してください。

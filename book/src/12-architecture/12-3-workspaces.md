@@ -41,20 +41,28 @@ my-app/
 
 ## この教材リポジトリの場合
 
+リポジトリのいちばん上にある [Cargo.toml](https://github.com/Kz1wg/rust-mastery/blob/main/Cargo.toml) の設定です（コメントは省略）。
+
 ```toml
 [workspace]
 resolver = "2"
 members = ["exercises/*", "tools/check-exercises"]
-exclude = ["exercises/ex012_non_exhaustive"]
+exclude = [
+    "exercises/ex012_non_exhaustive",
+    "exercises/ex048_workspace",
+    "exercises/ex055_derive_macro",
+]
 default-members = ["tools/check-exercises"]
 ```
 
 | 設定 | 理由 |
 | --- | --- |
 | `members = ["exercises/*"]` | 演習が増えても `Cargo.toml` を書き換えなくてよい（globパターン） |
-| `exclude = [...]` | `ex012` は**それ自体が入れ子の workspace**（Lesson 03-4 で、別crateから見た `#[non_exhaustive]` の挙動を確かめるため）。親の glob に巻き込まれないよう除外する |
+| `exclude = [...]` | 3つの演習は、**それ自体が入れ子の workspace**。`ex012` は別 crate から見た `#[non_exhaustive]` の挙動を確かめるため（03-4）、`ex048` は crate の境界で依存の向きを強制するため（この Lesson）、`ex055` は procedural macro に専用の crate が要るため（14-3）。親の glob に巻き込まれないよう除外する |
 | `default-members` | ルートで `-p` なしの `cargo build` / `cargo test` が、未着手の演習（`todo!()` で失敗するのが正常）を巻き込まないようにする |
 | `resolver = "2"` | 2021 edition 以降の機能解決。ビルド用依存とターゲット用依存の feature を混ぜない |
+
+なお、実践プロジェクト（Chapter 17）の [projects/](https://github.com/Kz1wg/rust-mastery/tree/main/projects) は、これとは**別の workspace** です。依存 crate（tokio）を使ってよい範囲を、そのディレクトリの中に限るためです。
 
 `default-members` は、「この workspace の**既定の作業対象**は何か」を宣言するものです。
 **すべての crate をまとめてビルドすると困る構成**では、これを設定する意味があります。
@@ -112,7 +120,7 @@ serde.workspace = true        # バージョンをルートで一元管理
 
 ## Exercise
 
-**`ex048_workspace`** — `cd exercises/ex048_workspace && cargo test` で判定します
+**[`ex048_workspace`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex048_workspace)** — `cd exercises/ex048_workspace && cargo test` で判定します
 （`ex012` と同じく、入れ子の workspace なのでディレクトリ内で実行します）。
 
 | crate | 役割 |

@@ -165,7 +165,7 @@ Chapter 04 の「必要になってから抽象化する」と同じ考え方を
 
 ## Exercise
 
-**`ex037_zero_cost`** — `cargo test -p ex037_zero_cost` で判定します。
+**[`ex037_zero_cost`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex037_zero_cost)** — `cargo test -p ex037_zero_cost` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

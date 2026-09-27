@@ -166,7 +166,7 @@ genericにすると、コンパイラは使われた型ごとに**コードを�
 
 ## Exercise
 
-**`ex018_generic_benefit`** — `cargo test -p ex018_generic_benefit` で判定します。
+**[`ex018_generic_benefit`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex018_generic_benefit)** — `cargo test -p ex018_generic_benefit` で判定します。
 
 `min_max_i32` と `min_max_f64`（同じロジックの重複）を、1つのgeneric関数にまとめます。
 

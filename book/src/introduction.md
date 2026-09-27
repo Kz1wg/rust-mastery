@@ -31,4 +31,5 @@ struct / enum / match / Result / Option を書け、所有権の基本を理解�
 付録は、必要なときに引く辞書として使ってください。
 コンパイルエラーに出会ったら [Appendix A](appendix/a-compiler-errors.md)、AI にレビューさせるときは [Appendix B](appendix/b-ai-review-prompts.md)、用語が分からなくなったら [Appendix C](appendix/c-glossary.md) です。
 
-全体の計画は、リポジトリの `ROADMAP.md` にあります。
+演習とプロジェクトのコードは、GitHub のリポジトリ [Kz1wg/rust-mastery](https://github.com/Kz1wg/rust-mastery) にあります（準備のしかたは [Lesson 00-2](00-introduction/00-2-cargo-test.md)）。
+全体の計画は、リポジトリの [ROADMAP.md](https://github.com/Kz1wg/rust-mastery/blob/main/ROADMAP.md) にあります。

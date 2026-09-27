@@ -85,7 +85,7 @@ B001	Rustの本	M001	5日
 図書室は、誰でも仕組みを想像できるうえに、「貸出中の本は借りられない」「延滞していると借りられない」といった
 **ルール**が自然に出てきます。ルールがあると、型やエラーの設計に考えどころが生まれます。
 
-参考実装は `projects/final_lending/` にあります（テストを含めて約 1800 行。そのうち `tests/` が約 500 行）。
+参考実装は、[リポジトリ](https://github.com/Kz1wg/rust-mastery)の `projects/final_lending/` にあります（テストを含めて約 1800 行。そのうち `tests/` が約 500 行）。
 **18-7 まで進むまで、参考実装のコードは開かないでください。** 先に見ると、それが「正解」に見えてしまい、自分で考える機会がなくなります。
 参考実装は、数ある良い設計の**1つ**にすぎません。
 
@@ -97,7 +97,8 @@ cargo run -p final_lending -- --data /tmp/lib.tsv list   # 動かしてみる
 
 ## 設計メモの置き場所
 
-自分の設計メモは、次のテンプレートをコピーして書き始めてください。
+自分の設計メモは、テンプレート [docs/final-project-template.md](https://github.com/Kz1wg/rust-mastery/blob/main/docs/final-project-template.md) をコピーして書き始めてください。
+リポジトリを手元に用意していれば、次のコマンドでコピーできます（用意のしかたは [Lesson 00-2](../00-introduction/00-2-cargo-test.md)）。
 
 ```bash
 cp docs/final-project-template.md my-design.md

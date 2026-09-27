@@ -186,7 +186,7 @@ associated type 版は、trait boundに登場する型パラメータが減り�
 
 ## Exercise
 
-**`ex015_associated_type`** — `cargo test -p ex015_associated_type` で判定します。
+**[`ex015_associated_type`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex015_associated_type)** — `cargo test -p ex015_associated_type` で判定します。
 
 `Stack` trait を associated type で定義し、`IntStack` に実装します。
 `S::Item` を使う generic 関数 `drain_all` も実装します。

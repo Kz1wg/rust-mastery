@@ -16,6 +16,9 @@
 | 依存crate | 使わない（標準ライブラリのみ） | 必要なら使う（P6 で tokio を使う） |
 | 実行する場所 | リポジトリのルート | `projects/` の中 |
 
+プロジェクトのコードは、GitHub のリポジトリの [projects/](https://github.com/Kz1wg/rust-mastery/tree/main/projects) ディレクトリにあります。
+まだリポジトリを手元に用意していない場合は、[Lesson 00-2](../00-introduction/00-2-cargo-test.md) の「演習はどこにあるか」を見てください。
+
 `projects/` は、ルートとは**別の workspace** になっています。
 依存crateを持ち込む範囲を、このディレクトリの中に限るためです（Lesson 12-3）。
 

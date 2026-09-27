@@ -134,7 +134,7 @@ fn main() {
 
 ## Exercise
 
-**`ex046_module_boundaries`** — `cargo test -p ex046_module_boundaries` で判定します。
+**[`ex046_module_boundaries`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex046_module_boundaries)** — `cargo test -p ex046_module_boundaries` で判定します。
 
 `order` モジュールを、公開項目を最小にした形で実装します。
 `compile_fail` doctest で、内部の計算関数やフィールドが外から触れないことを確認します。

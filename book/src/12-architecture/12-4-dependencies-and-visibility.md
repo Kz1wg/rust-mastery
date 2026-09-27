@@ -160,7 +160,7 @@ pub use parser::parse;
 
 ## Exercise
 
-**`ex049_visibility_and_facade`** — `cargo test -p ex049_visibility_and_facade` で判定します。
+**[`ex049_visibility_and_facade`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex049_visibility_and_facade)** — `cargo test -p ex049_visibility_and_facade` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

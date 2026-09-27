@@ -137,7 +137,7 @@ procedural macro は、使う側から見るととても便利ですが、書く
 
 ## Exercise
 
-**`ex055_derive_macro`** — `cd exercises/ex055_derive_macro && cargo test` で判定します
+**[`ex055_derive_macro`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex055_derive_macro)** — `cd exercises/ex055_derive_macro && cargo test` で判定します
 （derive マクロ用の crate と、それを使う crate からなる入れ子の workspace です）。
 
 | crate | 役割 |

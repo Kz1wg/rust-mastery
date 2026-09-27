@@ -223,7 +223,7 @@ enum ExampleState {
 
 ## Exercise
 
-**`ex042_future_basics`** — `cargo test -p ex042_future_basics` で判定します。
+**[`ex042_future_basics`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex042_future_basics)** — `cargo test -p ex042_future_basics` で判定します。
 
 | 課題 | 仕様 |
 | --- | --- |

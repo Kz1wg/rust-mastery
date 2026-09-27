@@ -93,7 +93,7 @@ Chapter 08（Lifetimes）で改めて扱います。このLessonで持ち帰っ�
 
 ## Exercise
 
-**`ex029_borrowing_iterators`** — `cargo test -p ex029_borrowing_iterators` で判定します。
+**[`ex029_borrowing_iterators`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex029_borrowing_iterators)** — `cargo test -p ex029_borrowing_iterators` で判定します。
 
 2つのスライスを受け取り、両方から借用したイテレータを返す関数を実装します。
 

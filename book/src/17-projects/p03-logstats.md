@@ -89,6 +89,8 @@ JSON 形式が本当に必要になったときに、`parse_line` を trait の�
 cd projects && cargo test -p p03_logstats
 ```
 
+コードは [projects/p03_logstats](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p03_logstats) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## 振り返り
 
 - [ ] 壊れた行を記録して続ける設計と、止める設計を、用途で選べる

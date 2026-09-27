@@ -124,6 +124,8 @@ clippy は「動くけれど、もっと良い書き方がある」ことを教�
 cd projects && cargo test -p p01_wordstat
 ```
 
+コードは [projects/p01_wordstat](https://github.com/Kz1wg/rust-mastery/tree/main/projects/p01_wordstat) にあります。書き換えるのは `src/` の中で、判定に使うテストは `tests/tests.rs` です。
+
 ## 振り返り
 
 - [ ] `lib.rs` と `main.rs` に何を置いたか、理由を説明できる

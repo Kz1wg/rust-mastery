@@ -134,7 +134,7 @@ forループで明示的に書く方が親切です。
 
 ## Exercise
 
-**`ex026_adapters_vs_for`** — `cargo test -p ex026_adapters_vs_for` で判定します。
+**[`ex026_adapters_vs_for`](https://github.com/Kz1wg/rust-mastery/tree/main/exercises/ex026_adapters_vs_for)** — `cargo test -p ex026_adapters_vs_for` で判定します。
 
 単純な変換をadapterの連鎖で、複数の状態を追跡する処理をforループで実装します。
 

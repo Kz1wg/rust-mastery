@@ -102,7 +102,7 @@ assert_eq!(lib, before); // 図書室全体が、呼ぶ前と同じ
 
 ## 参考実装を見る
 
-ここまで来たら、`projects/final_lending/` の参考実装を開いてかまいません。
+ここまで来たら、参考実装 [projects/final_lending](https://github.com/Kz1wg/rust-mastery/tree/main/projects/final_lending) を開いてかまいません。
 なお、参考実装は **18-8 の変更（利用者の種別）を入れた後**の状態です。
 
 ```bash
