@@ -13,3 +13,7 @@ default-theme = "light"
 # 本文タイトル側の文字列で管理している。mdBookの自動連番（パート跨ぎで連番になり、
 # タイトルの番号とずれる）は無効化する。
 no-section-label = true
+# GitHub Pages（https://kz1wg.github.io/rust-mastery/）で公開するための設定
+site-url = "/rust-mastery/"                                   # 404 ページのリンクを正しくする
+git-repository-url = "https://github.com/Kz1wg/rust-mastery"  # 右上に GitHub へのリンクを出す
+edit-url-template = "https://github.com/Kz1wg/rust-mastery/edit/main/book/{path}"  # 各ページに「編集」ボタンを出す
