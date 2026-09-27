@@ -4,10 +4,10 @@
 
 # 00 Introduction
 
-- [この教材の使い方](00-introduction/00-1-how-to-use.md)
-- [`cargo test` で学ぶ](00-introduction/00-2-cargo-test.md)
-- [診断問題](00-introduction/00-3-diagnostic.md)
-- [「Rustらしさ」とは](00-introduction/00-4-rustic.md)
+- [00-1 この教材の使い方](00-introduction/00-1-how-to-use.md)
+- [00-2 `cargo test` で学ぶ](00-introduction/00-2-cargo-test.md)
+- [00-3 診断問題](00-introduction/00-3-diagnostic.md)
+- [00-4 「Rustらしさ」とは](00-introduction/00-4-rustic.md)
 
 # 01〜03 基礎の設計
 
