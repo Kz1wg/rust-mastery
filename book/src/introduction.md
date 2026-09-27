@@ -19,17 +19,32 @@
 struct / enum / match / Result / Option を書け、所有権の基本を理解し、小さなRustアプリを作ったことがある方。
 文法の入門解説はしません。
 
-## 進め方
+前提知識に自信がなければ、Chapter 00 の診断問題（00-3）で確かめられます。
 
-サイドバーの各章を順に進めます。
+## 全体の地図
 
-1. まず [00-2](00-introduction/00-2-cargo-test.md) で演習の進め方を、[00-3](00-introduction/00-3-diagnostic.md) の診断問題で前提知識を確かめてください
-2. Chapter 01〜16 で、1つずつ考え方を学びます。各 Lesson には `cargo test` で判定できる演習があります
-3. Chapter 17 の実践プロジェクトで、複数の章の考え方を組み合わせます
-4. Chapter 18 の Final Project で、何もないところから設計します
+| 段階 | 章 | 身につけること |
+| --- | --- | --- |
+| 準備 | 00 Introduction | この教材の読み方、演習の準備、前提知識の確認、「Rustらしさ」とは何か |
+| 基礎の設計 | 01〜03 | 所有権で API を設計する。型と enum で、ありえない状態を作れなくする |
+| 抽象化の設計 | 04〜07 | trait・generic・エラー型・iterator を、「必要なときに、必要なだけ」使う |
+| 発展 | 08〜11 | ライフタイム、高度な型、並行処理、async が、なぜ存在するのか |
+| 構造と品質 | 12〜16 | モジュールの分け方、テストしやすい設計、マクロ、unsafe、ライブラリの API |
+| 実践 | 17 | 複数の章の考え方を組み合わせて、小さなツールやライブラリを作る |
+| 総合 | 18 | 要件から設計して、小さなアプリを何もないところから作る |
 
-付録は、必要なときに引く辞書として使ってください。
-コンパイルエラーに出会ったら [Appendix A](appendix/a-compiler-errors.md)、AI にレビューさせるときは [Appendix B](appendix/b-ai-review-prompts.md)、用語が分からなくなったら [Appendix C](appendix/c-glossary.md) です。
+Chapter 01〜16 の各 Lesson には、`cargo test` で判定できる演習があります。
+コンパイルエラーの読み方・AI へのレビューの頼み方・用語は、巻末の付録（A〜C）にまとめてあります。
 
-演習とプロジェクトのコードは、GitHub のリポジトリ [Kz1wg/rust-mastery](https://github.com/Kz1wg/rust-mastery) にあります（準備のしかたは [Lesson 00-2](00-introduction/00-2-cargo-test.md)）。
-全体の計画は、リポジトリの [ROADMAP.md](https://github.com/Kz1wg/rust-mastery/blob/main/ROADMAP.md) にあります。
+## まず、Chapter 00 から
+
+Chapter 00 は4つのページからなり、順番に読むと、演習を始める準備が整います。
+
+| ページ | 内容 |
+| --- | --- |
+| [00-1 この教材の使い方](00-introduction/00-1-how-to-use.md) | 1つの Lesson をどう読むか。実際に1問解いて体験する |
+| [00-2 `cargo test` で学ぶ](00-introduction/00-2-cargo-test.md) | 演習を手元に用意し、テストの失敗を読めるようにする |
+| [00-3 診断問題](00-introduction/00-3-diagnostic.md) | 前提知識を8問で確かめる |
+| [00-4 「Rustらしさ」とは](00-introduction/00-4-rustic.md) | この教材が目指す「良いコード」とは何かを、3つの実装を比べて考える |
+
+次のページ、**[00-1 この教材の使い方](00-introduction/00-1-how-to-use.md)** へ進んでください。
