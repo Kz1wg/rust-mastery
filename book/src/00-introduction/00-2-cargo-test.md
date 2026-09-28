@@ -109,8 +109,8 @@ cargo run -p check-exercises
 01 Ownership & Borrowing
   ✅ ex001_move_semantics         (01-1)
   ❌ ex002_borrow_errors          (01-2)  1 failed
-  ⬜ ex003_ownership_design       (01-3)  not started
-  ⬜ ex004_compare_signatures     (01-4)  not started
+  ⬜ ex003_ownership_design       (01-3)  5 todo
+  ⬜ ex004_compare_signatures     (01-4)  6 todo
 
 Progress: 1 / 4
 ```
@@ -118,9 +118,12 @@ Progress: 1 / 4
 | 表示 | 意味 |
 | --- | --- |
 | ✅ | 全てのテストが通った |
-| ❌ N failed | 着手済み。N 個のテストがまだ失敗している |
-| ⬜ not started | 未着手（`todo!()` のまま） |
+| ⬜ N todo | 失敗している N 個のテストは、すべて `todo!()`（まだ書いていない所）に届いたもの。骨組みのままの演習はこの表示になる |
+| ❌ N failed | `todo!()` 以外の理由で失敗しているテストがある（答えが違う、panic した、など）。N は失敗しているテストの数 |
 | ⚠️ build error | コンパイルできない |
+
+演習によっては、骨組みのままでも通るテストがあります（型の性質だけを確かめるテストなど）。
+そのため、通ったテストの数ではなく**失敗の理由**で、⬜ か ❌ かを決めています。
 
 ## 失敗の読み方
 

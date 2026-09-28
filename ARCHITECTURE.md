@@ -277,26 +277,33 @@ cargo run --bin check-exercises -- --lesson 02  # 章で絞り込み
 cargo run --bin check-exercises -- --solutions  # 解答検証（メンテナ向け）
 ```
 
-出力例（実際の出力）:
+出力例（骨組みのままの状態。実際の出力）:
 
 ```text
 01 Ownership & Borrowing
-  ⬜ ex001_move_semantics         (01-1)  not started
+  ⬜ ex001_move_semantics         (01-1)  5 todo
   ...
 
 03 Enum & State Machine
-  ⬜ ex009_enum_states            (03-1)  not started
-  ❌ ex010_state_machine          (03-2)  11 failed
+  ⬜ ex009_enum_states            (03-1)  … todo
+  ⬜ ex010_state_machine          (03-2)  11 todo
   ...
 
-Progress: 0 / 12
+Progress: 0 / 61
 ```
 
-- 「未着手」の判定は、`todo!()` の panic メッセージ（`not yet implemented`。カスタムメッセージ付き
-  `todo!("...")` でも実際には `"not yet implemented: ..."` という形で出力されることを確認済み）で
-  全テストが失敗している演習を `not started`、一部だけ通っている演習を `failed` とする。
-  1つもテストが実行されなかった場合（ビルド失敗、またはテストが1つも定義されていない場合の
-  両方を区別できない）は `⚠️ build error` とする。
+- 判定は「失敗したテストの理由」で行う。`cargo test` が失敗したテストごとに出す `---- <名前> stdout ----` の節を数え、
+  その中に `todo!()` の panic メッセージ（`not yet implemented`。`todo!("...")` でも `"not yet implemented: ..."` の形で出る）
+  があるものを「未実装による失敗」とする。
+  - 失敗が全て未実装によるもの → `⬜ N todo`
+  - それ以外の失敗が1つでもある → `❌ N failed`
+  - 全て通った → `✅`
+  - 1つもテストが実行されなかった（ビルド失敗と、テストが無い場合を区別できない）→ `⚠️ build error`
+- 以前は「通ったテストが 0 個で、出力に `not yet implemented` がある」ときだけ未着手としていた。
+  骨組みのままでも通るテスト（型の性質だけを確かめるテストなど）を持つ演習が 20 以上あり、
+  それらが未着手なのに `❌ failed` と表示されていたため、2026-09-28 に今の判定へ変えた。
+- `extern "C"` の関数（ex058 の `rust_add`）では `todo!()` を使えない（panic が C の境界を越えられず abort する）。
+  骨組みは仮の値 `i32::MIN` を返し、テストは「仮の値のままなら `not yet implemented` を含むメッセージで失敗する」ようにしている。
 - 実装は `std::process::Command` で `cargo test --quiet` を実行し、通常の人間向け出力
   （`test result: ok. N passed; M failed; ...` の行、複数出現しうる — lib単体テスト・
   `tests/tests.rs`・doctest それぞれに1行ずつ出る — を合算する）を単純な文字列走査で

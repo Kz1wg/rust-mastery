@@ -24,7 +24,11 @@ pub fn c_strlen(s: &str) -> Result<usize, NulError> {
 /// C から rust_add という名前で呼べる関数。
 #[no_mangle]
 pub extern "C" fn rust_add(a: i32, b: i32) -> i32 {
-    todo!("a と b の和を返してください")
+    // ここだけは todo!() を使っていない。extern "C" の関数の中で panic すると、
+    // panic が C の境界を越えられず、プログラム全体がその場で止まる（abort）ため（本文 15-3）。
+    // かわりに「まだ書いていない」ことを表す仮の値を返している。a と b の和を返すように書き換えること
+    let _ = (a, b);
+    i32::MIN
 }
 
 /// C の文字列（\0 終端）を Rust の String に変換する。UTF-8 でない部分は置き換え文字にする。

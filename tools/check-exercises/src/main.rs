@@ -31,8 +31,11 @@ struct ExerciseMeta {
 #[derive(Debug, Clone, Copy)]
 enum Category {
     Ok,
+    /// todo!() 以外の理由で失敗しているテストがある（数は失敗の総数）。
     Failed(u32),
-    NotStarted,
+    /// 失敗しているテストは、すべて todo!() に届いたもの（数は失敗の総数）。
+    /// 骨組みのままの演習も、書き途中で残りが todo!() だけの演習も、ここに入る。
+    Todo(u32),
     Error,
 }
 
@@ -222,24 +225,51 @@ fn run_tests(root: &Path, ex: &ExerciseMeta) -> Category {
     combined.push_str(&String::from_utf8_lossy(&output.stderr));
 
     let (passed, failed) = sum_test_results(&combined);
-    let not_started_marker = combined.contains("not yet implemented");
+    let todo_failures = count_todo_failures(&combined);
 
     // 注意: テストが1つも定義されていないcrate（0 passed; 0 failed）は、
     // ビルド失敗と区別できずここで Error 扱いになる。今のところ全ての演習は
     // 3つ以上のテストを持つため実害はないが、将来この分岐に頼る場合は注意。
+    //
+    // 骨組みのままでも通るテスト（型の性質を確かめるだけのテストなど）がある演習もあるので、
+    // 「passed が 0 かどうか」ではなく「失敗が全部 todo!() によるものか」で判定する。
     if passed == 0 && failed == 0 {
         Category::Error
     } else if failed == 0 {
         Category::Ok
-    } else if passed == 0 && not_started_marker {
-        Category::NotStarted
+    } else if todo_failures == failed {
+        Category::Todo(failed)
     } else {
         Category::Failed(failed)
     }
 }
 
-/// 複数出現しうる "test result: ok. 5 passed; 0 failed; ..." 形式の行を
-/// 全て合計する（lib単体テスト・tests/tests.rs・doctest、それぞれ1行ずつ出る）。
+/// 失敗したテストのうち、todo!() で panic したものの数を数える。
+///
+/// cargo test は、失敗したテストごとに `---- <テスト名> stdout ----` で始まる節を出力する。
+/// その節の中に todo!() のメッセージ（"not yet implemented"）があれば、未実装による失敗とみなす。
+fn count_todo_failures(text: &str) -> u32 {
+    let mut count = 0;
+    let mut in_section = false;
+    let mut section_is_todo = false;
+    for line in text.lines() {
+        let is_header = line.starts_with("---- ") && line.ends_with(" stdout ----");
+        if is_header || line == "failures:" {
+            if in_section && section_is_todo {
+                count += 1;
+            }
+            in_section = is_header;
+            section_is_todo = false;
+        } else if in_section && line.contains("not yet implemented") {
+            section_is_todo = true;
+        }
+    }
+    if in_section && section_is_todo {
+        count += 1;
+    }
+    count
+}
+
 fn sum_test_results(text: &str) -> (u32, u32) {
     let mut total_passed = 0u32;
     let mut total_failed = 0u32;
@@ -307,7 +337,7 @@ fn run_progress_mode(root: &Path, exercises: &[ExerciseMeta]) {
                     ("✅", String::new())
                 }
                 Category::Failed(n) => ("❌", format!("{n} failed")),
-                Category::NotStarted => ("⬜", "not started".to_string()),
+                Category::Todo(n) => ("⬜", format!("{n} todo")),
                 Category::Error => ("⚠️ ", "build error".to_string()),
             };
             println!("  {icon} {:<28} ({})  {note}", ex.id, ex.lesson);
@@ -422,5 +452,47 @@ fn run_solutions_mode(root: &Path, exercises: &[ExerciseMeta]) {
     if !failed_names.is_empty() {
         println!("Failed exercises: {}", failed_names.join(", "));
         std::process::exit(1);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const OUTPUT: &str = "\
+running 3 tests
+failures:
+
+---- a stdout ----
+
+thread 'a' panicked at src/lib.rs:3:5:
+not yet implemented: 書いてください
+
+---- b stdout ----
+
+thread 'b' panicked at tests/tests.rs:9:5:
+assertion `left == right` failed
+  left: 1
+ right: 2
+
+failures:
+    a
+    b
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out
+";
+
+    #[test]
+    fn counts_only_failures_caused_by_todo() {
+        assert_eq!(count_todo_failures(OUTPUT), 1);
+        assert_eq!(sum_test_results(OUTPUT), (1, 2));
+    }
+
+    #[test]
+    fn no_failures_means_no_todo() {
+        assert_eq!(
+            count_todo_failures("test result: ok. 3 passed; 0 failed;"),
+            0
+        );
     }
 }

@@ -30,7 +30,14 @@ fn c_strlen_rejects_interior_nul() {
 
 #[test]
 fn rust_add_is_callable_from_rust_too() {
-    assert_eq!(rust_add(2, 3), 5);
+    let sum = rust_add(2, 3);
+    // 骨組みは todo!() の代わりに i32::MIN を返している（extern "C" の中では panic できないため）
+    assert_ne!(
+        sum,
+        i32::MIN,
+        "not yet implemented: rust_add はまだ仮の値（i32::MIN）を返しています"
+    );
+    assert_eq!(sum, 5);
 }
 
 #[test]

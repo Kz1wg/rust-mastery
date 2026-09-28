@@ -49,6 +49,11 @@ jobs:
       - run: cd exercises/ex012_non_exhaustive && cargo build --workspace && cargo fmt --all --check
       - run: cd exercises/ex048_workspace && cargo build --workspace && cargo fmt --all --check
       - run: cd exercises/ex055_derive_macro && cargo build --workspace && cargo fmt --all --check
+      # 骨組みのままなら、全ての演習が「⬜ N todo」と表示されること（❌ や ⚠️ が出たら骨組みかテストの問題）
+      - name: check-exercises が骨組みを未着手と判定すること
+        run: |
+          cargo run -q -p check-exercises | tee status.txt
+          if grep -E "❌|⚠️" status.txt; then exit 1; fi
 
   projects:
     name: 実践プロジェクト（projects/ workspace）
